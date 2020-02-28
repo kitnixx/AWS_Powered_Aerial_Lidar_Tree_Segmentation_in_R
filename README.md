@@ -1,6 +1,6 @@
 # CanyonCreekLidar
 
-- https://codesandbox.io/s/festive-swanson-71vfm?from-embed
+- https://codesandbox.io/s/festive-swanson-71vfm?fontsize=14&hidenavigation=1&theme=dark
 - https://codeshare.io/GLBgle
 
 Normal GitHub setup
