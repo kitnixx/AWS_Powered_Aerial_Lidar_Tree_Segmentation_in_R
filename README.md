@@ -1,7 +1,7 @@
 # CanyonCreekLidar
 
-https://codesandbox.io/s/festive-swanson-71vfm?from-embed
-https://codeshare.io/GLBgle
+- https://codesandbox.io/s/festive-swanson-71vfm?from-embed
+- https://codeshare.io/GLBgle
 
 Normal GitHub setup
 - Make a zip just in case things go wrong
