@@ -19,37 +19,60 @@
 #########################
 # Set working directory #
 #########################
+# Functions: setwd()
+
+setwd()
 
 #######################################
 # Read in lidar tiles for target unit #
 #######################################
+# Functions: readLAS()
+# Inputs: A point cloud dataset (.las)
+# Ouptuts: None
+
+las <- readLAS()
 
 ###########################################
 # Create las tile catalog for target unit #
 ###########################################
-Function: catalog()
+# Functions: catalog(), readLAScatalog()
+# Inputs:
+# Outputs: a catalog of las tiles comprising the AOI unit
+
+lascatalog <- catalog()
+readLAScatalog()
 
 #########################
 # Read in AOI shapefile #
 #########################
+# Functions: readOGR()
+# Inputs:
+# Outputs:
+
+aoi <- readOGR()
 
 #############################
 # Clip las tiles in catalog #
 #############################
 # Functions: lasclip()
+# Inputs:
+# Outputs:
 
+las_clip <- lasclip()
 
 ##############################
 # Merge las tiles in catalog #
 ##############################
-lasmer# Functions:
+# Functions:
 # Inputs:
 # Outputs:
 
 #####################
 # Clean point cloud #
 #####################
-#Functions:
+# Functions:
+# Inputs:
+# Ouptuts:
 
 ################################################################
 # Ground filter or read in Quantum bare earth/highest hit DEMs #
@@ -63,26 +86,25 @@ lasmer# Functions:
 # Inputs:
 # Outputs:
 
+las_normal <- lasnormalize()
+plot(las_normal)
+
 #######################
 # Segment Point Cloud #
 #######################
-# Functions: lastrees(), lassnags()
+# Functions: lastrees(), lassnags(), lastrees(), lassnags(), dalponte(), silva(), watershed(), wing2015()
 # Inputs:
 # Outputs:
 
-# Dalponte: dalponte
-# Silva: silva()
-# Watershed: watershed()
-# Wing2015: wing2015()
-# Others from literature
 
-#######################
-# Canopy Height Model #
-#######################
+#############################
+# Canopy Height Model (CHM) #
+#############################
 # Functions: 
 # Inputs:
 # Ouputs: .tif raster image where each pixel displays a height/elevation value
 # How to integrate Forest Service CHMs??
+
 
 #################
 # Rasterize CHM #
@@ -92,15 +114,9 @@ lasmer# Functions:
 ##########################
 # Segment Rasterized CHM #
 ##########################
-# Functions: lastrees(), lassnags()
+# Functions: lastrees(), lassnags(), dalponte(), silva(), watershed(), wing2015()
 # Inputs:
 # Outputs:
-
-# Dalponte: dalponte
-# Silva: silva()
-# Watershed: watershed()
-# Wing2015: wing2015()
-# Others from literature
 
 #################
 # Cloud Metrics #
@@ -112,8 +128,8 @@ lasmer# Functions:
 ###############################################################################
 # Write individual snag/tree tops (Local Maxima) shapefile to output location #
 ###############################################################################
-
-# Inputs:
+# Functions: 
+# Inputs: 
 # Outputs: point shapefile (.shp) of individual snag/tree maximum heights
 
 ###################################################################
