@@ -83,6 +83,7 @@ setwd('C:\\Users\\khnic\\Desktop\\test')
 # Functions: readOGR()
 # Inputs: AOI shapefile (.shp)
 # Outputs: None
+<<<<<<< HEAD
 
 aoi <- readOGR(".\\UF_S1D_unit13_obj14_reproj.shp")
 
@@ -117,6 +118,20 @@ las_clip <- lasclip(ctg, aoi)
 cleanlas
 #writeLAS (las_clip, tempfile(fileext = ".las"))
 #plot(las_clip)
+=======
+
+aoi <- readOGR(".\\UF_S1D_unit13_obj14.shp")
+
+#====================================================
+# Create LAS tile catalog for area of interest (AOI)
+#====================================================
+# Functions: readLAScatalog()
+# Inputs: A folder of LAS tiles comprising the AOI unit
+# Outputs: A catalog of las tiles comprising the AOI unit
+
+ctg <- readLAScatalog(".\\2017_las_UpperFawn")
+plot(ctg)
+>>>>>>> 4eb6b06831a66aec48175faea5545516472f12bb
 
 # NEEDS WORK
 #====================
@@ -132,8 +147,14 @@ cleanlas
 # Functions:
 # Inputs: A catalog of LAS tiles comprising the AOI
 # Outputs: A catalog of merged LAS tiles comprising the AOI
+<<<<<<< HEAD
 #las_merge <- rbind(las1, las2, las3) # (argument is LAS objects aka each tile name)
 #opt_output_files(las_merge) <- (".\\merged_outputs")
+=======
+
+las_merge <- rbind.LAS() # (argument is LAS objects aka each tile name)
+opt_output_files(ctg) <- "folder/where/to/store/outputs/{ORIGINALFILENAME}_merged"
+>>>>>>> 4eb6b06831a66aec48175faea5545516472f12bb
 
 # NEEDS WORK
 #================================================================
@@ -145,6 +166,7 @@ cleanlas
 # How to use Quantum bare earth and highest hit DEMs instead of making our own??
 
 #?csf
+<<<<<<< HEAD
 #las_ground <- lasground(las_clip,csf(class_threshold=0.2)) # classify ground points with Cloth Simulation Filter algorithm
 #plot(las_ground, color="Classification")
 
@@ -189,6 +211,40 @@ las_normal <- lasnormalize(las_clip, tin())
 # Inputs:
 # Outputs:
 
+=======
+#las_ground <- lasground(ctg,csf(class_threshold=0.2)) # classify ground points with Cloth Simulation Filter algorithm
+#plot(las_ground, color="Classification")
+
+#=======================
+# Normalize Point Cloud
+#=======================
+# Functions: lasnormalize()
+# Inputs: A catalog of merged LAS tiles comprising the AOI
+# Outputs: A normalized catalog of LAS tiles comprising the AOI
+
+las_normal <- lasnormalize() # (las_ground, tin())
+opt_output_files(ctg) <- "folder/where/to/store/outputs/{ORIGINALFILENAME}_normalized"
+plot(las_normal)
+
+#=======================================================
+# Clip normalized LAS tiles in catalog to AOI shapefile 
+#=======================================================
+# Functions: lasclip()
+# Inputs:  A normalized, merged catalog of LAS tiles comprising the AOI
+# Outputs: A clipped catalog of LAS tiles comprising the AOI
+
+las_clip <- lasclip(ctg, aoi)
+opt_output_files(ctg) <- "folder/where/to/store/outputs/{ORIGINALFILENAME}_clipped"
+plot(las_clip)
+
+#=====================
+# Segment Point Cloud 
+#=====================
+# Functions: lastrees(), lassnags(), dalponte(), silva(), watershed(), wing2015()
+# Inputs:
+# Outputs:
+
+>>>>>>> 4eb6b06831a66aec48175faea5545516472f12bb
 #==========================
 # Canopy Height Model (CHM) 
 #==========================
@@ -198,6 +254,7 @@ las_normal <- lasnormalize(las_clip, tin())
 # How to integrate Forest Service CHMs with Quantum point clouds??
 
 ?grid_canopy
+<<<<<<< HEAD
 chm_dsmtin <- grid_canopy(las_normal, 0.5, dsmtin()) # creates raster for canopy height model (values of cells are z relative to ground)
 #chm = grid_canopy(las_normal, 0.5, pitfree())
 #chm = grid_canopy(las_normal, 0.5, p2r())
@@ -208,6 +265,18 @@ writeRaster(chm, filename= "chm_dsmtin.tif", format = Gtiff, overwrite=TRUE)
 #raster_alignment = list(res = 0.5)
 #raster_alignment
 plot(chm, col = height.colors(50)) # displays the chm raster
+=======
+chm = grid_canopy(las_normal_clip, 0.045, dsmtin()) # creates raster for canopy height model (values of cells are z relative to ground)
+plot(chm, col = height.colors(50)) # displays the chm raster
+writeRaster(chm, filename= "chm.tif", overwrite=TRUE)
+
+
+#################
+# Rasterize CHM #
+#################
+
+
+>>>>>>> 4eb6b06831a66aec48175faea5545516472f12bb
 
 ##########################
 # Segment Rasterized CHM #
@@ -240,4 +309,3 @@ writeOGR()
 # Outputs: Polygon shapefile (.shp) of individual snag polygons
 
 writeOGR()
-

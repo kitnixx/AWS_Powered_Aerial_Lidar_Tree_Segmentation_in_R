@@ -1,6 +1,6 @@
 # CanyonCreekLidar
 
-- https://codesandbox.io/s/festive-swanson-71vfm?fontsize=14&hidenavigation=1&theme=dark
+- https://codesandbox.io/s/github/gearsmotion789/CanyonCreekLidar
 - https://codeshare.io/GLBgle
 
 Normal GitHub setup
@@ -27,6 +27,8 @@ Github info
   - git remote add LeapRobot https://github.com/gearsmotion789/Leap-Motion-Robot-Arm.git
 - Remove Repo
   - git remove rm LeapRobot
+- Delete Branch
+  - git push origin --delete [branch]
 - Push
   - (Prereq)
     - must do below to get updated repo before pushing your own folder (so save a zip backup!)
