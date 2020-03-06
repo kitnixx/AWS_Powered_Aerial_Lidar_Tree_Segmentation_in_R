@@ -7,7 +7,7 @@ batch();
 
 async function batch(){
   var folders = await getDataFolders("./data");
-  for (var i=0; i<folders.length; i++) {
+  /*for (var i=0; i<folders.length; i++) {
       var items = await getDataFolders(`./data/${folders[i]}`);
 
       var folderPath = folders[i];
@@ -24,7 +24,23 @@ async function batch(){
           await writeFile(jsonFileName, json);
           await runRScript(jsonFileName);
       });
-  }
+  }*/
+  var items = await getDataFolders(`./data/UF_S1A_2016_las`);
+
+  var folderPath = 'UF_S1A_2016_las';
+
+  await getFileNames(items, folderPath).then(async function(response) {
+      var json = {
+          dir: `${folderPath}`,
+          shpFile: response.shpFile,
+          lasFiles: response.lasFiles
+      };
+
+      console.log(json);
+
+      await writeFile(jsonFileName, json);
+      await runRScript(jsonFileName);
+  });
 }
 
 function runRScript(arg){
