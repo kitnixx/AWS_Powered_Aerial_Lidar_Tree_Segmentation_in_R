@@ -93,11 +93,6 @@ async function main(){
 		 	console.log(e);
 		});
 
-        console.log("---------------------------------");
-        console.log("Exiting now.");
-    	process.exit();	// Force exit b/c node-ssh  doesn't provide any way to disconnect
-
-    	/*
     	console.log("---------------------------------");
     	console.log("Stopping instance...");
     	await ec2.stopInstances(params).promise()
@@ -121,7 +116,10 @@ async function main(){
     			}
     			return;
     		});
-    	*/
+    	
+    	console.log("---------------------------------");
+        console.log("Exiting now.");
+    	process.exit();	// Force exit b/c node-ssh  doesn't provide any way to disconnect
     } else {
         console.log("Pass in folder you want to work with!");
     }
