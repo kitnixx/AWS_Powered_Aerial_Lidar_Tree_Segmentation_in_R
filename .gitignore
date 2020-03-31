@@ -1,0 +1,6 @@
+data/
+ec2_batch/node_modules/
+pc_to_s3/node_modules/
+s3_download/node_modules/
+s3_upload/node_modules/
+start_server/node_modules/
