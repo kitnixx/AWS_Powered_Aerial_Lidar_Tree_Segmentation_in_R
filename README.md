@@ -11,7 +11,7 @@
 - ec2_batch (runs on EC2 instance)
   - generates the _clipped & _normalized files for each folder, containing the .las & 1 .shp file
 - s3_upload (runs on EC2 instance)
-  - uploads _clipped" & _normalized files from local machine to S3, & then deletes folders
+  - uploads _clipped & _normalized files from local machine to S3, & then deletes folders
 - pc_to_s3 (runs on your own local machine)
   - modified version of "s3_upload", uploads all folders from local machine to S3
 - start_server (runs on your own local machine)
