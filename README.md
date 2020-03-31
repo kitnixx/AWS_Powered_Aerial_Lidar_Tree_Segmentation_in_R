@@ -1,9 +1,28 @@
 # CanyonCreekLidar
 
-- https://codesandbox.io/s/github/gearsmotion789/CanyonCreekLidar
-- https://codeshare.io/GLBgle
+### Prequistites
+1. Download node.js: https://nodejs.org/en/download
+2. Download git: https://git-scm.com/downloads
+3. Run ```npm install``` in each root directory
 
-Normal GitHub setup
+### Infromation
+- s3_download (runs on EC2 instance)
+  - downloads all folders from S3 on to local machine
+- ec2_batch (runs on EC2 instance)
+  - generates the _clipped & _normalized files for each folder, containing the .las & 1 .shp file
+- s3_upload (runs on EC2 instance)
+  - uploads _clipped" & _normalized files from local machine to S3, & then deletes folders
+- pc_to_s3 (runs on your own local machine)
+  - modified version of "s3_upload", uploads all folders from local machine to S3
+- start_server (runs on your own local machine)
+  - automates the EC2 batch processing
+    - starts EC2 instance
+    - calls s3_download
+    - calls ec2_batch
+    - calls s3_upload
+    - stops EC2 instance
+
+### Normal GitHub setup
 
 - Make a zip just in case things go wrong
   - git init
