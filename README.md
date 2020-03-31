@@ -9,7 +9,7 @@
 - s3_download (runs on EC2 instance)
   - downloads all folders from S3 on to local machine
 - ec2_batch (runs on EC2 instance)
-  - generates the _clipped & _normalized files for each folder, containing the .las & 1 .shp file
+  - generates the _clipped & _normalized files for each folder, containing the .las files & 1 .shp file
 - s3_upload (runs on EC2 instance)
   - uploads _clipped & _normalized files from local machine to S3, & then deletes folders
 - pc_to_s3 (runs on your own local machine)
