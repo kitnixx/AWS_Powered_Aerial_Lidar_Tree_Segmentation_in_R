@@ -34,7 +34,7 @@
   - git commit -m "stuff"
   - git push origin master
 
-Github info
+### Github info
 
 - Prereq
   - You have to been in the same folder that was "Cloned" from this repo
