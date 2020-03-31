@@ -7,7 +7,7 @@ Normal GitHub setup
 
 - Make a zip just in case things go wrong
   - git init
-  - git remote add origin https://github.com/gearsmotion789/robot.git
+  - git remote add origin https://github.com/gearsmotion789/CanyonCreekLidar.git
   - git fetch
   - git checkout master
   - git pull origin master
@@ -24,7 +24,7 @@ Github info
   - If you see "double folder icon" instead of "single folder" icon, do below, then [git init]
     - rm -rf .git
 - Add Repo
-  - git remote add LeapRobot https://github.com/gearsmotion789/Leap-Motion-Robot-Arm.git
+  - git remote add LeapRobot https://github.com/gearsmotion789/CanyonCreekLidar.git
 - Remove Repo
   - git remove rm LeapRobot
 - Delete Branch
