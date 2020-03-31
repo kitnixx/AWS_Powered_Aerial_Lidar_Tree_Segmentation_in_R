@@ -1,7 +1,0 @@
-install.packages("rjson")
-install.packages("lidR")
-install.packages("raster")
-install.packages("rgdal")
-install.packages("BiocManager")
-BiocManager::install("EBImage")
-install.packages("stringr")
