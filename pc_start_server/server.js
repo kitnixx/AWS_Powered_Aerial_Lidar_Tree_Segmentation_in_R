@@ -1,8 +1,9 @@
+const credentials = require("../credentials.js");
 const AWS = require("aws-sdk");
 AWS.config.update({
-    "accessKeyId": "AKIA2KTK4Q4WYRPLFVZW",
-    "secretAccessKey": "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",
-    "region": "us-east-1"
+    "accessKeyId": credentials.accessKeyId,
+    "secretAccessKey": credentials.secretAccessKey,
+    "region": credentials.region
 });
 const ec2 = new AWS.EC2();
 
