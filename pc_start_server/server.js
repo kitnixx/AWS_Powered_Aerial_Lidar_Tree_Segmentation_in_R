@@ -1,10 +1,6 @@
-const credentials = require("../credentials.js");
 const AWS = require("aws-sdk");
-AWS.config.update({
-    "accessKeyId": credentials.accessKeyId,
-    "secretAccessKey": credentials.secretAccessKey,
-    "region": credentials.region
-});
+const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = credentials;
 const ec2 = new AWS.EC2();
 
 const node_ssh = require('node-ssh');

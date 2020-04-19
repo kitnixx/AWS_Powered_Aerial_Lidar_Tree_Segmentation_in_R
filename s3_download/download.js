@@ -1,10 +1,6 @@
-const credentials = require("../credentials.js");
 const AWS = require("aws-sdk");
-AWS.config.update({
-    "accessKeyId": credentials.accessKeyId,
-    "secretAccessKey": credentials.secretAccessKey,
-    "region": credentials.region
-});
+const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+AWS.config.credentials = credentials;
 const s3 = new AWS.S3();
 
 const rimraf = require("rimraf");

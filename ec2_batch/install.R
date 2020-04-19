@@ -7,8 +7,8 @@ BiocManager::install("EBImage")
 install.packages("stringr")
 
 
-EBImage
-https://rdrr.io/github/kroemerlab/ColocalizR/f/README.md
+#EBImage
+#https://rdrr.io/github/kroemerlab/ColocalizR/f/README.md
 
-lidR
-https://github.com/Jean-Romain/lidR
+#lidR
+#https://github.com/Jean-Romain/lidR
