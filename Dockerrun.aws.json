@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "gearsmotion789/test",
+      "Name": "gearsmotion789/canyoncreeklidar",
       "Update": "true"
     },
     "Ports": [
