@@ -7,4 +7,4 @@ services:
         ports:
             - 5000:5000
         volumes:
-            - ~/.aws/credentials:/root/.aws/credentials:ro
+            - ~/.aws/credentials:/root/.aws/credentials

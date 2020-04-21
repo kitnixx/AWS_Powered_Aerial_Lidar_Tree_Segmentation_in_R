@@ -1,6 +1,4 @@
 const AWS = require("aws-sdk");
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-AWS.config.credentials = credentials;
 const s3 = new AWS.S3();
 
 const fs = require('fs');
@@ -8,7 +6,7 @@ var rimraf = require("rimraf");
 
 const myArgs = process.argv.slice(2);
 const DATA_DIR = '../' + myArgs[0];
-const BUCKET = 'canyon-creek-bucket';
+const BUCKET = 'canyon-creek-bucket-0';
 
 const OUTPUT_DIR = 'processed/';
 

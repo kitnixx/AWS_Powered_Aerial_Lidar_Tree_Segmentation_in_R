@@ -1,6 +1,4 @@
 const AWS = require("aws-sdk");
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-AWS.config.credentials = credentials;
 const ec2 = new AWS.EC2();
 
 const node_ssh = require('node-ssh');

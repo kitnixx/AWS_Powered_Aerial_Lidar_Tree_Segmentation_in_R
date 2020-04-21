@@ -1,6 +1,4 @@
 const AWS = require("aws-sdk");
-const credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
-AWS.config.credentials = credentials;
 const s3 = new AWS.S3();
 
 const rimraf = require("rimraf");
@@ -24,7 +22,7 @@ async function main(){
 }
 
 async function downloadS3Files(GET_DIR, DATA_DIR){
-	const BUCKET = 'canyon-creek-bucket';
+	const BUCKET = 'canyon-creek-bucket-0';
 
 	await s3.listObjects({
 	    Bucket: BUCKET
