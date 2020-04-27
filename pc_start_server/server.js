@@ -1,4 +1,5 @@
 const AWS = require("aws-sdk");
+AWS.config.update({region:'us-east-1'});
 const ec2 = new AWS.EC2();
 
 const node_ssh = require('node-ssh');
@@ -13,7 +14,7 @@ async function main(){
     if(myArgs[0] != null){
     	var params = {
     		InstanceIds: [
-    			"i-0758a82a9be0bb08d"
+    			"i-097196d37382b256d"
     	 	]
     	};
 
@@ -44,9 +45,9 @@ async function main(){
     	console.log("---------------------------------");
     	console.log("SSH-ing to EC2 instance...")
     	await ssh.connect({
-    		host: 'ec2-54-172-94-50.compute-1.amazonaws.com',
-    		username: 'ubuntu',
-    		privateKey: '../MyKey.pem'
+    		host: 'ec2-54-91-186-10.compute-1.amazonaws.com',
+    		username: 'ec2-user',
+    		privateKey: '../key.pem'
     	})
     	.then(async function() {
     		console.log("---------------------------------");
@@ -74,7 +75,7 @@ async function main(){
     		    },
     		});*/
 
-    		await ssh.exec(`node s3_upload.js ${DATA_DIR}`, [''], {
+    		/*await ssh.exec(`node s3_upload.js ${DATA_DIR}`, [''], {
     			cwd:'/home/ubuntu/s3_upload',
     			onStdout(chunk) {
     		    	console.log(chunk.toString('utf8'));
@@ -82,13 +83,13 @@ async function main(){
     		    onStderr(chunk) {
     		      	console.log('stderrChunk', chunk.toString('utf8'));
     		    },
-    		});
+    		});*/
     	})
     	.catch(function(e) {
 		 	console.log(e);
 		});
 
-    	console.log("---------------------------------");
+    	/*console.log("---------------------------------");
     	console.log("Stopping instance...");
     	await ec2.stopInstances(params).promise()
     		.then(async (err, data) => {
@@ -110,7 +111,7 @@ async function main(){
     				console.log(data);
     			}
     			return;
-    		});
+    		});*/
     	
     	console.log("---------------------------------");
         console.log("Exiting now.");

@@ -7,7 +7,7 @@ const myArgs = process.argv.slice(2);
 const DATA_DIR = '../' + myArgs[0];
 const BUCKET = 'canyon-creek-bucket-0';
 
-const OUTPUT_DIR = 'data/';
+const OUTPUT_DIR = 'data';
 
 main();
 
@@ -21,6 +21,7 @@ async function main(){
             var folderPath = folders[i];
             var items = await getDataFolders(`${DATA_DIR}/${folderPath}`);
 
+            console.log(folderPath);
             await uploadFiles(items, folderPath);                
         }
 
