@@ -6,11 +6,13 @@
 #COPY ec2_batch/install.R .
 #RUN Rscript ./install.R
 
-FROM gearsmotion789/rbase
-RUN apt-get install nodejs -y
-RUN apt-get install npm -y
+#FROM gearsmotion789/rbase
+#RUN apt-get install nodejs -y
+#RUN apt-get install npm -y
+#COPY ec2_batch/install.R .
+#RUN Rscript ./install.R
 
-#FROM node
+FROM gearsmotion789/rbase
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install --production --silent
