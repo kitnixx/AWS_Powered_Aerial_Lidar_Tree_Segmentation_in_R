@@ -2,6 +2,9 @@
 
 ### Typical Docker Commands
 ```
+# SSH into EC2 instance
+ssh -i "key.pem" ec2-user@ec2-54-91-186-10.compute-1.amazonaws.com
+
 # Pull image
 docker pull gearsmotion789/rbase
 
