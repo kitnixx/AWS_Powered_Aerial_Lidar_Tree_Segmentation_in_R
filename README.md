@@ -1,5 +1,17 @@
 # CanyonCreekLidar
 
+### Typical Docker Commands
+```
+# Pull image
+docker pull gearsmotion789/rbase
+
+# Run container
+docker run -d -it --name rbase --restart unless-stopped gearsmotion789/rbase
+
+# Open container terminal
+docker exec -it rbase bash
+```
+
 ### Prequistites
 1. Download node.js: https://nodejs.org/en/download
 2. Download git: https://git-scm.com/downloads
