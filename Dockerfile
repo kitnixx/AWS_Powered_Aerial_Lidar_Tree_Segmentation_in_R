@@ -6,7 +6,7 @@
 #COPY ec2_batch/install.R .
 #RUN Rscript ./install.R
 
-FROM gearsmotion789/rbase
+#FROM gearsmotion789/rbase
 #RUN apt-get update -y
 #RUN apt-get install git -y
 
@@ -16,10 +16,10 @@ FROM gearsmotion789/rbase
 #COPY ec2_batch/install.R .
 #RUN Rscript ./install.R
 
-# FROM gearsmotion789/rbase
-# WORKDIR /usr/src/app
-# COPY package.json .
-# RUN npm install --production --silent
-# COPY . .
-# EXPOSE 5000
-# CMD [ "node", "./backend/index.js" ]
+FROM gearsmotion789/rbase
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install --production --silent
+COPY . .
+EXPOSE 80
+CMD [ "node", "./backend/index.js" ]
