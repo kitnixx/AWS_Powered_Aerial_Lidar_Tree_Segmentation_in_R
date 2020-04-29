@@ -52,6 +52,9 @@ docker exec -it canyoncreeklidar bash
     - calls ec2_batch
     - calls s3_upload
     - stops EC2 instance
+    
+###### References
+- https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
 
 ### Normal GitHub setup
 
