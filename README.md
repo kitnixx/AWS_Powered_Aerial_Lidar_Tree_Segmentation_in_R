@@ -1,5 +1,17 @@
 # CanyonCreekLidar
 
+### Job Operations
+```
+# GET /start/<S3 main folder>
+localhost/start/data
+
+# GET /status/<job id>
+localhost/status/asdf-asfd-asfd
+
+# GET /cancle/<job id>
+localhost/cancel/asdf-asdf-asdf
+```
+
 ### Typical Docker Commands
 ```
 # SSH into EC2 instance
