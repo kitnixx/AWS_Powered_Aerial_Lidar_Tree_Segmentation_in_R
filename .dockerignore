@@ -1,2 +1,7 @@
 data
 node_modules
+key.pem
+.DS_Store
+.Rhistory
+data.zip
+VSWorkspace.code-workspace

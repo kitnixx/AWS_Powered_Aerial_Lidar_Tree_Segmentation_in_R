@@ -2,69 +2,71 @@ const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 
 const fs = require('fs');
-var rimraf = require("rimraf");
 
-const myArgs = process.argv.slice(2);
-const DATA_DIR = '../' + myArgs[0];
+//const myArgs = process.argv.slice(2);
+//const DATA_DIR = '../' + myArgs[0];
 const BUCKET = 'canyon-creek-bucket-0';
 
-const OUTPUT_DIR = 'processed/';
+//const OUTPUT_DIR = myArgs[0];
 
-main();
+//main();
 
-async function main(){
-    if(myArgs[0] != null){
-        console.log("Starting...");
+exports.main = async (baseDir, dataFolder) => {
+    if(baseDir != null && dataFolder != null){
+        console.log("----------------------------------------------");
+        console.log("Uploading files from Local to S3...");
+        console.log("----------------------------------------------");
 
-        var folders = await getDataFolders(DATA_DIR);
+        var dataDir = baseDir + dataFolder + '/';
+        var folders = await getItems(dataDir);
 
         for (var i=0; i<folders.length; i++) {
-            var folderPath = folders[i];
-            var items = await getDataFolders(`${DATA_DIR}/${folderPath}`);
+            var folderPath = dataDir + folders[i] + '/outputs/';
+            var items = await getItems(folderPath); 
+            var outputDir = dataFolder+'/'+folders[i]+'/outputs/';
 
-            await uploadFiles(items, folderPath);                
+            for(let i in items){
+                await uploadFiles(outputDir, folderPath, items[i]);
+            }
         }
-
-        // delete the data directory
-        rimraf(DATA_DIR, function () { console.log("done"); });
+        console.log("----------------------------------------------");
     } else {
         console.log("Pass in folder you want to work with!");
     }
 }
 
-function uploadFiles(items, folderPath){
-    return new Promise(async function(resolve, reject) {
+async function uploadFiles(outputDir, folderPath, item){
+    await new Promise(async function(resolve, reject) {
+        let data = folderPath + item;
+        const fileContent = fs.readFileSync(data);
+        const params = {
+            Bucket: BUCKET,
+            Key: outputDir + item, // File name you want to save as in S3
+            Body: fileContent
+        };
 
-        for (var i=0; i<items.length; i++){
-            if(items[i].includes("_clipped") || items[i].includes("_normalize")){
-                let dir = `${DATA_DIR}/${folderPath}/${items[i]}`;
-                console.log(`Reading ${dir}`)
-                const fileContent = fs.readFileSync(dir);
-                const params = {
-                    Bucket: BUCKET,
-                    Key: `${OUTPUT_DIR}/${folderPath}/${items[i]}`, // File name you want to save as in S3
-                    Body: fileContent
-                };
+        console.log(`Uploading ${data}`);
 
-                s3.upload(params)
-                    .on('httpUploadProgress', function(evt) {
-                        var progress = Math.round(evt.loaded / evt.total * 100);
-                        console.log(`File uploading: ${progress}% - ${params.Key}`)
-                    })
-                    .send(function(err, data) {
-                        if(err)
-                            console.log(err);
-                        else
-                            console.log(`File uploaded successfully. ${data.Location}`);
-                    });
-            }
-        }
-
-        resolve();
+        var lastProgress = 0;        
+        s3.putObject(params)
+            .on('httpUploadProgress', function(evt) {   // TOOD: upload progress only callbacks when reached to 100%
+                var progress = Math.round(evt.loaded / evt.total * 100);
+                if(lastProgress != progress){
+                    lastProgress = progress;
+                    console.log(`File upload: ${progress}% - ${params.Key}`)
+                }
+            })
+            .send(function(err, data) {
+                if(err)
+                    console.log(err);
+                else
+                    console.log("File uploaded successfully to:", params.Key);
+                resolve();
+            });
     });
 }
 
-function getDataFolders(dir){
+function getItems(dir){
     return new Promise(function(resolve, reject) {
         fs.readdir(dir, function(err, items) {
             resolve(items);

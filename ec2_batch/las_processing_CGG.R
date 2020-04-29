@@ -19,19 +19,27 @@ library(rgdal)
 library(future)
 library(maptools)
 
-#path to working directory
-home <- 'C:/Users/Alex/Desktop/asdf'
-#set working directory
-setwd(home)
+#home <- 'C:/Users/Alex/Desktop/batch_processing/data/item/'
+#lasName <- 'unit13_2016.las'
+
+arg <- commandArgs(TRUE)
+home <- arg[1]
+lasName <- arg[2]
+
+outputDir <- paste(home, 'outputs', "/", sep="")
+home
+outputDir
+
+if(TRUE){
 
 #filename for single las tile
-lasfile <- 'unit13_2016.las'
+lasfile <- paste(home, lasName, sep = "")
+lasfile
 las <- readLAS(lasfile)
-catalog <- catalog(home)
 
 #create output directory 
-chmfile <- paste('C:/Users/Alex/Desktop/asdf/lidartest/rasters/',paste(tools::file_path_sans_ext(basename(lasfile))),'_CHM.tif',sep="")
-crownfile <- paste('C:/Users/Alex/Desktop/asdf/lidartest/vectors/',paste(tools::file_path_sans_ext(basename(lasfile))),'_crowns_silva',sep="")
+chmfile <- paste(outputDir,paste(tools::file_path_sans_ext(basename(lasfile))),'_CHM.tif',sep="")
+crownfile <- paste(outputDir,paste(tools::file_path_sans_ext(basename(lasfile))),'_crowns_silva',sep="")
 
 #define variables 
 cs <- crs(las)#crs of point cloud
@@ -97,13 +105,13 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
   print('10')
   #writeOGR(hull_silva, home, crownfile, driver="ESRI Shapefile", overwrite_layer=TRUE)
   
-  currdir <- getwd() #store your current working directory
-  print('11')
-  setwd("C:/Users/Alex/Desktop/asdf/lidartest/vectors/") #switch to your desired folder
-  print('12')
+  #currdir <- getwd() #store your current working directory
+  #print('11')
+  #setwd("C:/Users/Alex/Desktop/asdf/lidartest/vectors/") #switch to your desired folder
+  #print('12')
   writeSpatialShape(hull_silva, crownfile) # write shapefile
-  print('13')
-  setwd(currdir) #switch back to parent folder
+  #print('13')
+  #setwd(currdir) #switch back to parent folder
   
   return(las_normal)
 }
@@ -144,5 +152,5 @@ proc.time() - ptm#STOP THE CLOCK
 #plot(chm, xlab = "", ylab = "", xaxt='n', yaxt = 'n')
 # Add dominant treetops to the plot
 #plot(ttops_sub, col = "blue", pch = 20, cex = 0.5, add = TRUE)
-
+}
 
