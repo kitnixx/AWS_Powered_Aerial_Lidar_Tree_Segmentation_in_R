@@ -27,6 +27,7 @@ docker run -p 80:80 -d -it --name canyoncreeklidar --restart unless-stopped gear
 
 # Open container terminal
 docker exec -it rbase bash
+docker exec -it canyoncreeklidar bash
 ```
 
 ### Prequistites
