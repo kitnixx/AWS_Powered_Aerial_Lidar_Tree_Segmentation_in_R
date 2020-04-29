@@ -21,5 +21,6 @@ WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install --production --silent
 COPY . .
+WORKDIR /usr/src/app/backend
+CMD [ "node", "index.js" ]
 EXPOSE 80
-CMD [ "node", "./backend/index.js" ]
