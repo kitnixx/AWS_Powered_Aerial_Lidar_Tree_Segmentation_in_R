@@ -4,12 +4,15 @@
 ```
 # GET /start/<S3 main folder>
 localhost/start/data
+ec2-18-234-255-76.compute-1.amazonaws.com/start/data
 
 # GET /status/<job id>
-localhost/status/asdf-asfd-asfd
+localhost/status/<job id>
+ec2-18-234-255-76.compute-1.amazonaws.com/status/<job id>
 
 # GET /cancel/<job id>
-localhost/cancel/asdf-asdf-asdf
+localhost/cancel/<job id>
+ec2-18-234-255-76.compute-1.amazonaws.com/cancel/<job id>
 ```
 
 ### Typical Docker Commands
