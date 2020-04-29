@@ -23,7 +23,7 @@ docker pull gearsmotion789/canyoncreeklidar
 
 # Run container
 docker run -d -it --name rbase --restart unless-stopped gearsmotion789/rbase
-docker run -p 80:80 -d -it --name canyoncreeklidar --restart unless-stopped gearsmotion789/canyoncreeklidar
+docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped gearsmotion789/canyoncreeklidar
 
 # Open container terminal
 docker exec -it rbase bash
