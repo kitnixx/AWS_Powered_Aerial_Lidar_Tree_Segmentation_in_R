@@ -8,7 +8,7 @@ localhost/start/data
 # GET /status/<job id>
 localhost/status/asdf-asfd-asfd
 
-# GET /cancle/<job id>
+# GET /cancel/<job id>
 localhost/cancel/asdf-asdf-asdf
 ```
 
