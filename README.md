@@ -21,7 +21,7 @@ ssh -i "key.pem" ec2-user@ec2-54-91-186-10.compute-1.amazonaws.com
 docker pull gearsmotion789/rbase
 
 # Run container
-docker run -d -it --name rbase --restart unless-stopped gearsmotion789/rbase
+docker run -p 80:80 -d -it --name rbase --restart unless-stopped gearsmotion789/rbase
 
 # Open container terminal
 docker exec -it rbase bash
