@@ -33,6 +33,9 @@ docker exec -it rbase bash
 docker exec -it canyoncreeklidar bash
 ```
 
+### Setup Docker on EC2 Instance
+- https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
+
 ### Prequistites
 1. Download node.js: https://nodejs.org/en/download
 2. Download git: https://git-scm.com/downloads
@@ -54,9 +57,6 @@ docker exec -it canyoncreeklidar bash
     - calls ec2_batch
     - calls s3_upload
     - stops EC2 instance
-    
-###### References
-- https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
 
 ### Normal GitHub setup
 
