@@ -29,7 +29,10 @@ q.on('timeout', function (next, job) {
     if(queuedIds[0] != null){
         console.log('Job timed out:', queuedIds[0]);
         finishedIds.push({
-            id: queuedIds[0],
+            id: queuedIds[0].id,
+            startTime: queuedIds[0].startTime,
+            endTime: (new Date()).toString(),
+            params: queuedIds[0].params,
             status: "Timed Out"
         });
         queuedIds.shift();
@@ -44,7 +47,10 @@ q.on('success', function (result, job) {
     if(queuedIds[0] != null){
         console.log('Job finished processing:', queuedIds[0]);
         finishedIds.push({
-            id: queuedIds[0],
+            id: queuedIds[0].id,
+            startTime: queuedIds[0].startTime,
+            endTime: (new Date()).toString(),
+            params: queuedIds[0].params,
             status: "Finished"
         });
         queuedIds.shift();
@@ -54,14 +60,20 @@ q.on('success', function (result, job) {
 var baseDir = process.cwd().replace('backend', '');
 baseDir = baseDir.replace(/\\/g, "/");
 
-app.get('/start/:dataFolder', (req, res) => {
-    let dataFolder = req.params.dataFolder;
+app.post('/start', (req, res) => {
+    let params = req.body;
     let id = uuidv4();
-    queuedIds.push(id);
+    let job = {
+    	id: id,
+    	startTime: (new Date()).toString(),
+    	params: params
+    }
+    queuedIds.push(job);
 
 	q.push(async function () {
         return new Promise(function (resolve, reject) {
-            if(queuedIds.indexOf(id) >= 0){
+        	let queuePos = queuedIds.map(item => item.id).indexOf(id);
+            if(queuePos >= 0){
                 console.log("----------------------------------------------");
                 console.log("Starting Job:", id);
                 console.log("----------------------------------------------");
@@ -70,7 +82,7 @@ app.get('/start/:dataFolder', (req, res) => {
                 childProcess = fork('./backgroundThread.js');         
                 // send dataFolder to forked process
                 childProcess.send({
-                    dataFolder: dataFolder
+                    params: queuedIds[queuePos].params
                 });
                 // listen for messages from forked process
                 childProcess.on('message', async (message) => {
@@ -78,8 +90,8 @@ app.get('/start/:dataFolder', (req, res) => {
 
                     // delete the data directory
                     await new Promise(function(resolve, reject) {
-                        rimraf(baseDir + dataFolder + '/', function () {
-                            console.log("Cleaned up data directory:", dataFolder);
+                        rimraf(baseDir + queuedIds[queuePos].params.data + '/', function () {
+                            console.log("Cleaned up data directory:", queuedIds[queuePos].params.data);
                             resolve();
                         });
                     });
@@ -92,8 +104,8 @@ app.get('/start/:dataFolder', (req, res) => {
 
                     // delete the data directory
                     await new Promise(function(resolve, reject) {
-                        rimraf(baseDir + dataFolder + '/', function () {
-                            console.log("Cleaned up data directory:", dataFolder);
+                        rimraf(baseDir + queuedIds[queuePos].params.data + '/', function () {
+                            console.log("Cleaned up data directory:", queuedIds[queuePos].params.data);
                             resolve();
                         });
                     });
@@ -106,30 +118,28 @@ app.get('/start/:dataFolder', (req, res) => {
         });
 	})
 
-    res.send({
-        id: id,
-        queuePos: queuedIds.length-1
-    });
+	job.queuePos = queuedIds.length-1
+    res.send(job);
 });
 
 app.get('/status/:id', (req, res) => {
     let id = req.params.id;
-    let finishedPos = finishedIds.map(item => item.id).indexOf(id);//finishedIds.indexOf(id);
-    let queuePos = queuedIds.indexOf(id);
+    let finishedPos = finishedIds.map(item => item.id).indexOf(id);
+    let queuePos = queuedIds.map(item => item.id).indexOf(id);
 
-    let ret = {
-        id: id,
-        //finishedIds: finishedIds,
-        //finishedPos: finishedPos
-    };
+    let ret = {};
 
-    if(finishedPos >= 0)
+    if(finishedPos >= 0){
+    	ret = finishedIds[finishedPos];
         ret.status = finishedIds[finishedPos].status;
+    }
     else if(queuePos > 0){
+    	ret = queuedIds[queuePos];
         ret.queuePos = queuePos;
         ret.status = "In Queue";
     }
     else if(queuePos == 0){
+    	ret = queuedIds[queuePos];
         ret.queuePos = queuePos;
         ret.status = "Job is Running";
     }    
@@ -141,33 +151,37 @@ app.get('/status/:id', (req, res) => {
 
 app.get('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
     let id = req.params.id;
-    let finishedPos = finishedIds.map(item => item.id).indexOf(id);//finishedIds.indexOf(id);
-    let queuePos = queuedIds.indexOf(id);
+    let finishedPos = finishedIds.map(item => item.id).indexOf(id);
+    let queuePos = queuedIds.map(item => item.id).indexOf(id);
 
-    let ret = {
-        id: id,
-        //len: q.length
-    };
+    let ret = {};
 
-    if(finishedPos >= 0)
-        ret.status = "Already Finished";
+    if(finishedPos >= 0){
+    	ret = finishedIds[finishedPos];
+    }
     else if(queuePos > 0){
-        finishedIds.push({
-            id: queuedIds[queuePos],
+    	ret = {
+            id: queuedIds[queuePos].id,
+            startTime: queuedIds[queuePos].startTime,
+            endTime: (new Date()).toString(),
+            params: queuedIds[queuePos].params,
             status: "Canceled"
-        });
+        };
+        finishedIds.push(ret);
         queuedIds.splice(queuePos, 1);        
-        ret.status = "Removed from Queue";
     }
     else if(queuePos == 0){        
-        finishedIds.push({
-            id: queuedIds[queuePos],
+        ret = {
+            id: queuedIds[queuePos].id,
+            startTime: queuedIds[queuePos].startTime,
+            endTime: (new Date()).toString(),
+            params: queuedIds[queuePos].params,
             status: "Canceled"
-        });
+        };
+        finishedIds.push(ret);
         queuedIds.shift();
         if(childProcess != null){
-            childProcess.kill('SIGINT');
-            ret.status = "Job is Stopped";
+            childProcess.kill('SIGINT');            
         }
     }
     else

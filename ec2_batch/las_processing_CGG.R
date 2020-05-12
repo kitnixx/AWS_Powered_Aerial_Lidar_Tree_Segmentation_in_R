@@ -25,6 +25,15 @@ library(maptools)
 arg <- commandArgs(TRUE)
 home <- arg[1]
 lasName <- arg[2]
+res = strtoi(arg[3])
+ws = strtoi(arg[4])
+z = strtoi(arg[5])
+algorithm = arg[6]
+
+res
+ws
+z
+algorithm
 
 outputDir <- paste(home, 'outputs', "/", sep="")
 home
@@ -51,9 +60,9 @@ plan(multisession, workers = 2L)#set up parallel processing (2L = 2 Clusters)
 set_lidr_threads(((cores-2) /2 ))#2. for background processing, reserve 2 cores
 
 #set parameters
-res = 1 #resolution of DTM and CHM in feet
-ws = 10 #size of moving window in feet
-z = 10 #minimum tree height in feet
+#res = 1 #resolution of DTM and CHM in feet
+#ws = 10 #size of moving window in feet
+#z = 10 #minimum tree height in feet
 
 #define function to detect ground, normalize point cloud, and find treetops
 spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
@@ -74,13 +83,40 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
   groundmetrics <- cloud_metrics(ground, ~myMetrics(X, Y, Z))
   print('Ground Statistics: ') 
   print(groundmetrics)
+
+
   print('Creating CHM...')
   chm <- grid_canopy(las_normal, res = res, pitfree(c(0,2,5,10,15), c(0, 1.5))) #### INSERT NORMALIZED LAS ####
   print("Detecting Local Maxima...")
   ttops = tree_detection(las_normal, lmf(ws = ws)) #from las file
-  ttops = subset(ttops, Z >= z ) 
+  ttops = subset(ttops, Z >= z )
+
+
   print("Local Maxima Detection Complete! Segmenting Tree Crowns...")
-  crowns_silva = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
+  print(algorithm)
+  if(algorithm == "silva2016"){
+    crowns_silva = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
+  }
+  else if(algorithm == "dalponte2016"){
+    crowns_silva = dalponte2016(chm,ttops,th_tree = 2,th_seed = 0.45,th_cr = 0.55,max_cr = 10,ID = "treeID")
+  }
+  else if(algorithm == "wing2015"){
+    crowns_silva = wing2015(wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = 50,uppr_int_thrsh = 170,pt_den_req = 3,BBPRthrsh_mat = NULL))
+  }
+  else if(algorithm == "watershed"){
+    crowns_silva = watershed(watershed(chm, th_tree = 2, tol = 1, ext = 1))
+  }
+
+  #chm = raster("file/to/a/chm/")
+  #ttops = tree_detection(chm, lmf(3))
+  #crowns = watershed(chm)()
+  #mcwatershed(chm, treetops, th_tree = 2, ID = "treeID"))
+
+  # watershed - https://rdrr.io/cran/lidR/man/watershed.html
+  # wing2015 - https://rdrr.io/cran/lidR/man/wing2015.html
+  # dalponte2016 - https://rdrr.io/cran/lidR/man/dalponte2016.html
+
+
   hull_silva <- tree_hulls(crowns_silva, type = "concave", concavity = 1)
   print('Tree Crowns Segmented! Preparing Outputs...')
   treestats = tree_metrics(crowns_silva, .stdtreemetrics)

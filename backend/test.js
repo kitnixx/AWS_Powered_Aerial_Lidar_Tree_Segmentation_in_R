@@ -6,11 +6,11 @@ baseDir = baseDir.replace(/\\/g, "/");
 
 //console.log(baseDir);
 
-batch_process('data');
+batch_process('test-small-file');
 
 async function batch_process(dataFolder){
     await download.main(baseDir, dataFolder);
-    await batch.main(baseDir, dataFolder);
-    await upload.main(baseDir, dataFolder);
+    //await batch.main(baseDir, dataFolder);
+    //await upload.main(baseDir, dataFolder);
     console.log("FINISHED");
 }

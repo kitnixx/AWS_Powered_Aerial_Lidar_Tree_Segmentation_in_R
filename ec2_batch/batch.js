@@ -8,13 +8,13 @@ var fs = require('fs');
 
 //main();
 
-exports.main = async (baseDir, dataFolder) => {
-    if(baseDir != null && dataFolder != null){
+exports.main = async (baseDir, params) => {
+    if(baseDir != null && params != null){
     	console.log("----------------------------------------------");
     	console.log("Running Rscript for each LAS file...");
     	console.log("----------------------------------------------");
 
-    	var dataDir = baseDir + dataFolder + '/';
+    	var dataDir = baseDir + params.data + '/';
         var folders = await getItems(dataDir);        
 
         for (var i=0; i<folders.length; i++) {
@@ -30,7 +30,15 @@ exports.main = async (baseDir, dataFolder) => {
 			for(let i in items){
 				if(items[i].endsWith('.las')){
 					//console.log(items[i]);
-					await runRScript(baseDir, folderPath, items[i]);
+					await runRScript(
+                        baseDir,
+                        folderPath,
+                        items[i],
+                        params.res,
+                        params.ws,
+                        params.z,
+                        params.algorithm
+                    );
 				}				
 			}
 
@@ -61,14 +69,14 @@ exports.main = async (baseDir, dataFolder) => {
     }
 }
 
-function runRScript(baseDir, arg1, arg2){
+function runRScript(baseDir, arg1, arg2, arg3, arg4, arg5, arg6){
     var script = baseDir+"ec2_batch/las_processing_CGG.R";
     /*console.log(script);
     console.log(arg1);
     console.log(arg2);*/
 
     if (
-      shell.exec(`Rscript ${script} "${arg1}" "${arg2}"`).code !== 0
+      shell.exec(`Rscript ${script} "${arg1}" "${arg2}" "${arg3}" "${arg4}" "${arg5}" "${arg6}"`).code !== 0
     ) {
       shell.echo("Error: Rscript failed");
       shell.exit(1);

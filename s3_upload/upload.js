@@ -23,7 +23,7 @@ exports.main = async (baseDir, dataFolder) => {
         for (var i=0; i<folders.length; i++) {
             var folderPath = dataDir + folders[i] + '/outputs/';
             var items = await getItems(folderPath); 
-            var outputDir = dataFolder+'/'+folders[i]+'/outputs/';
+            var outputDir = dataFolder+'/'+folders[i]+`/outputs-${new Date()}/`;
 
             for(let i in items){
                 await uploadFiles(outputDir, folderPath, items[i]);
