@@ -4,13 +4,19 @@ const upload = require('../s3_upload/upload.js');
 var baseDir = process.cwd().replace('backend', '');
 baseDir = baseDir.replace(/\\/g, "/");
 
-//console.log(baseDir);
+var params = {
+	data: 'test-small-file',
+	res: 1,
+	ws: 10,
+	z: 10,
+	algorithm: 'watershed'
+};
 
-batch_process('test-small-file');
+batch_process(params);
 
-async function batch_process(dataFolder){
-    await download.main(baseDir, dataFolder);
-    //await batch.main(baseDir, dataFolder);
-    //await upload.main(baseDir, dataFolder);
+async function batch_process(params){
+    //await download.main(baseDir, params.data);
+    await batch.main(baseDir, params);
+    //await upload.main(baseDir, params.data);
     console.log("FINISHED");
 }

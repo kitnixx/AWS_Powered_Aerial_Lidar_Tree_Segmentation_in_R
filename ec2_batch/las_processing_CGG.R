@@ -18,6 +18,7 @@ library(concaveman)
 library(rgdal)
 library(future)
 library(maptools)
+library(EBImage)
 
 #home <- 'C:/Users/Alex/Desktop/batch_processing/data/item/'
 #lasName <- 'unit13_2016.las'
@@ -48,7 +49,7 @@ las <- readLAS(lasfile)
 
 #create output directory 
 chmfile <- paste(outputDir,paste(tools::file_path_sans_ext(basename(lasfile))),'_CHM.tif',sep="")
-crownfile <- paste(outputDir,paste(tools::file_path_sans_ext(basename(lasfile))),'_crowns_silva',sep="")
+crownfile <- paste(outputDir,paste(tools::file_path_sans_ext(basename(lasfile))),'_crowns',sep="")
 
 #define variables 
 cs <- crs(las)#crs of point cloud
@@ -95,16 +96,25 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
   print("Local Maxima Detection Complete! Segmenting Tree Crowns...")
   print(algorithm)
   if(algorithm == "silva2016"){
-    crowns_silva = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
+    crowns = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
   }
   else if(algorithm == "dalponte2016"){
-    crowns_silva = dalponte2016(chm,ttops,th_tree = 2,th_seed = 0.45,th_cr = 0.55,max_cr = 10,ID = "treeID")
+    crowns = lastrees(las_normal, dalponte2016(chm,ttops,th_tree = 2,th_seed = 0.45,th_cr = 0.55,max_cr = 10,ID = "treeID"))
   }
   else if(algorithm == "wing2015"){
-    crowns_silva = wing2015(wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = 50,uppr_int_thrsh = 170,pt_den_req = 3,BBPRthrsh_mat = NULL))
+    bbpr_thresholds <- matrix(c(0.80, 0.80, 0.70,
+                          0.85, 0.85, 0.60,
+                          0.80, 0.80, 0.60,
+                          0.90, 0.90, 0.55),
+                          nrow =3, ncol = 4)
+
+    crowns = lassnags(las_normal, wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = 50,uppr_int_thrsh = 170,pt_den_req = 3,BBPRthrsh_mat = bbpr_thresholds))
+    # plot(las_normal, color="snagCls", colorPalette = rainbow(5))
+    # snags <- lasfilter(las_normal, snagCls > 0)
+    # plot(snags, color="snagCls", colorPalette = rainbow(5)[-1])
   }
   else if(algorithm == "watershed"){
-    crowns_silva = watershed(watershed(chm, th_tree = 2, tol = 1, ext = 1))
+    crowns = lastrees(las_normal, watershed(chm, th_tree = 2, tol = 1, ext = 1))
   }
 
   #chm = raster("file/to/a/chm/")
@@ -117,15 +127,15 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
   # dalponte2016 - https://rdrr.io/cran/lidR/man/dalponte2016.html
 
 
-  hull_silva <- tree_hulls(crowns_silva, type = "concave", concavity = 1)
+  hull_silva <- tree_hulls(crowns, type = "concave", concavity = 1)
   print('Tree Crowns Segmented! Preparing Outputs...')
-  treestats = tree_metrics(crowns_silva, .stdtreemetrics)
+  treestats = tree_metrics(crowns, .stdtreemetrics)
   print('1')
   treestats = treestats@data
   print('2')
   writeRaster(chm, chmfile, overwrite=TRUE)
   print('3')
-  las.spatial = as.spatial(crowns_silva) #convert to spatial data
+  las.spatial = as.spatial(crowns) #convert to spatial data
   print('4')
   las.df=as.data.frame(las.spatial) #convert to data frame
   print('5')
