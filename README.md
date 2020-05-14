@@ -33,6 +33,15 @@ docker exec -it rbase bash
 docker exec -it canyoncreeklidar bash
 ```
 
+### Extras
+```
+# Download folder from S3 to local
+aws s3 sync "s3://canyon-creek-bucket-0/data2/items/outputs-Thu May 14 2020 18:37:04 GMT+0000 (Coordinated Universal Time)" .
+
+# Get log outputs from running docker container
+docker logs canyoncreeklidar
+```
+
 ### Setup Docker on EC2 Instance
 - https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
 
@@ -41,7 +50,7 @@ docker exec -it canyoncreeklidar bash
 2. Download git: https://git-scm.com/downloads
 3. Run ```npm install``` in each root directory
 
-### Infromation
+### Information
 - s3_download (runs on EC2 instance)
   - downloads all folders from S3 on to local machine
 - ec2_batch (runs on EC2 instance)
