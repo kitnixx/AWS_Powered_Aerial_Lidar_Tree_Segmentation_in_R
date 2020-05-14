@@ -1,7 +1,7 @@
 const shell = require("shelljs");
 var fs = require('fs');
 
-//const JSON_FILE = "json.json"
+const JSON_FILE = "json.json"
 
 //const myArgs = process.argv.slice(2);
 //const DATA_DIR = '../' + myArgs[0];     // directory to data
@@ -21,23 +21,20 @@ exports.main = async (baseDir, params) => {
         	var folderPath = dataDir + folders[i] + '/';
             var items = await getItems(folderPath); 
 
-           	//console.log(folderPath);
-            //console.log(items);
-
             if (!fs.existsSync(folderPath+'outputs'))
 			    fs.mkdirSync(folderPath+'outputs');
 
 			for(let i in items){
-				if(items[i].endsWith('.las')){
-					//console.log(items[i]);
+				if(items[i].endsWith('.las')){					
+	                console.log(params);
+	                var jsonLocation = baseDir+'ec2_batch/'+JSON_FILE;
+	                await writeFile(jsonLocation, params);
+
 					await runRScript(
                         baseDir,
                         folderPath,
                         items[i],
-                        params.res,
-                        params.ws,
-                        params.z,
-                        params.algorithm
+                        jsonLocation
                     );
 				}				
 			}
@@ -63,20 +60,16 @@ exports.main = async (baseDir, params) => {
         }
 
         console.log("----------------------------------------------");
-        //process.exit();	// Force exit b/c shelljs  doesn't provide any way to disconnect
     } else {
         console.log("Pass in folder you want to work with!");
     }
 }
 
-function runRScript(baseDir, arg1, arg2, arg3, arg4, arg5, arg6){
+function runRScript(baseDir, arg1, arg2, arg3){
     var script = baseDir+"ec2_batch/las_processing_CGG.R";
-    /*console.log(script);
-    console.log(arg1);
-    console.log(arg2);*/
 
     if (
-      shell.exec(`Rscript ${script} "${arg1}" "${arg2}" "${arg3}" "${arg4}" "${arg5}" "${arg6}"`).code !== 0
+      shell.exec(`Rscript ${script} "${arg1}" "${arg2}" "${arg3}"`).code !== 0
     ) {
       shell.echo("Error: Rscript failed");
       shell.exit(1);
@@ -91,13 +84,13 @@ function getItems(dir){
     });
 }
 
-/*function writeFile(fileName, content){
+function writeFile(fileName, content){
     return new Promise(function(resolve, reject) {
         fs.writeFile(fileName, JSON.stringify(content), function(err) {
             resolve();
         });
     });
-}*/
+}
 
 /*function getFileNames(items, folderPath){
     return new Promise(async function(resolve, reject) {

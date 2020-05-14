@@ -16,32 +16,76 @@ library(parallel)
 library(dplyr)
 library(concaveman)
 library(rgdal)
+library(sp)
 library(future)
 library(maptools)
 library(EBImage)
+library(proj4)
+library(stringr)
+library(rjson)
+library(assertive)
 
-#home <- 'C:/Users/Alex/Desktop/batch_processing/data/item/'
-#lasName <- 'unit13_2016.las'
+validInput <- function( param, default ){
+  #print(length(unlist(param)) > 0)
+  if(length(unlist(param)) > 0)  # true if valid integer
+    return(param)
+  else
+    return(default)
+}
 
 arg <- commandArgs(TRUE)
 home <- arg[1]
 lasName <- arg[2]
-res = strtoi(arg[3])
-ws = strtoi(arg[4])
-z = strtoi(arg[5])
-algorithm = arg[6]
+jsonFile <- fromJSON(file = arg[3])
+outputDir <- paste(home, 'outputs', "/", sep="")
+
+home
+outputDir
+
+res <- as.numeric(validInput(jsonFile["res"], 1)) #resolution of DTM and CHM in feet
+ws <- as.numeric(validInput(jsonFile["ws"], 10)) #size of moving window in feet
+z <- as.numeric(validInput(jsonFile["z"], 10)) #minimum tree height in feet
+algorithm <- validInput(jsonFile["algorithm"], "NULL")
+if(algorithm == "NULL" || (algorithm != "silva2016" && algorithm != "dalponte2016" && algorithm != "wing2015" && algorithm != "watershed"))
+  stop()
 
 res
 ws
 z
 algorithm
 
-outputDir <- paste(home, 'outputs', "/", sep="")
-home
-outputDir
+# dalponte2016 params
+th_tree <- as.numeric(validInput(jsonFile["asdf"], 2))
+th_seed <- as.numeric(validInput(jsonFile["th_seed"], 0.45))
+th_cr <- as.numeric(validInput(jsonFile["th_cr"], 0.55))
+max_cr <- as.numeric(validInput(jsonFile["max_cr"], 10))
+
+th_tree
+th_seed
+th_cr
+max_cr
+
+# wing2015 params
+#neigh_radii <- validInput(jsonFile["neigh_radii"], 2)
+low_int_thrsh <- as.numeric(validInput(jsonFile["low_int_thrsh"], 50))
+uppr_int_thrsh <- as.numeric(validInput(jsonFile["uppr_int_thrsh"], 170))
+pt_den_req <- as.numeric(validInput(jsonFile["pt_den_req"], 3))
+
+#neigh_radii
+low_int_thrsh
+uppr_int_thrsh
+pt_den_req
+
+# watershed params
+th_tree <- as.numeric(validInput(jsonFile["th_tree"], 2))
+tol <- as.numeric(validInput(jsonFile["tol"], 1))
+ext <- as.numeric(validInput(jsonFile["ext"], 1))
+
+th_tree
+tol
+ext
 
 if(TRUE){
-
 #filename for single las tile
 lasfile <- paste(home, lasName, sep = "")
 lasfile
@@ -59,11 +103,6 @@ plan(multisession, workers = 2L)#set up parallel processing (2L = 2 Clusters)
 #Choose one of the following 2 options:
 #set_lidr_threads(cores/2)#1. for dedicated processing, use all cores
 set_lidr_threads(((cores-2) /2 ))#2. for background processing, reserve 2 cores
-
-#set parameters
-#res = 1 #resolution of DTM and CHM in feet
-#ws = 10 #size of moving window in feet
-#z = 10 #minimum tree height in feet
 
 #define function to detect ground, normalize point cloud, and find treetops
 spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
@@ -99,7 +138,7 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
     crowns = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
   }
   else if(algorithm == "dalponte2016"){
-    crowns = lastrees(las_normal, dalponte2016(chm,ttops,th_tree = 2,th_seed = 0.45,th_cr = 0.55,max_cr = 10,ID = "treeID"))
+    crowns = lastrees(las_normal, dalponte2016(chm,ttops,th_tree = th_tree,th_seed = th_seed,th_cr = th_cr,max_cr = max_cr,ID = "treeID"))
   }
   else if(algorithm == "wing2015"){
     bbpr_thresholds <- matrix(c(0.80, 0.80, 0.70,
@@ -108,56 +147,37 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
                           0.90, 0.90, 0.55),
                           nrow =3, ncol = 4)
 
-    crowns = lassnags(las_normal, wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = 50,uppr_int_thrsh = 170,pt_den_req = 3,BBPRthrsh_mat = bbpr_thresholds))
+    crowns = lassnags(las_normal, wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = low_int_thrsh,uppr_int_thrsh = uppr_int_thrsh,pt_den_req = pt_den_req,BBPRthrsh_mat = bbpr_thresholds))
     # plot(las_normal, color="snagCls", colorPalette = rainbow(5))
     # snags <- lasfilter(las_normal, snagCls > 0)
     # plot(snags, color="snagCls", colorPalette = rainbow(5)[-1])
   }
   else if(algorithm == "watershed"){
-    crowns = lastrees(las_normal, watershed(chm, th_tree = 2, tol = 1, ext = 1))
+    crowns = lastrees(las_normal, watershed(chm, th_tree = th_tree, tol = tol, ext = ext))
   }
-
-  #chm = raster("file/to/a/chm/")
-  #ttops = tree_detection(chm, lmf(3))
-  #crowns = watershed(chm)()
-  #mcwatershed(chm, treetops, th_tree = 2, ID = "treeID"))
 
   # watershed - https://rdrr.io/cran/lidR/man/watershed.html
   # wing2015 - https://rdrr.io/cran/lidR/man/wing2015.html
   # dalponte2016 - https://rdrr.io/cran/lidR/man/dalponte2016.html
 
-
   hull_silva <- tree_hulls(crowns, type = "concave", concavity = 1)
   print('Tree Crowns Segmented! Preparing Outputs...')
   treestats = tree_metrics(crowns, .stdtreemetrics)
-  print('1')
   treestats = treestats@data
-  print('2')
   writeRaster(chm, chmfile, overwrite=TRUE)
-  print('3')
   las.spatial = as.spatial(crowns) #convert to spatial data
-  print('4')
   las.df=as.data.frame(las.spatial) #convert to data frame
-  print('5')
   tree.xyz=las.df %>% group_by(treeID) %>% slice(which.max(Z))
-  print('6')
   treepoints=SpatialPointsDataFrame(tree.xyz[,20:21], tree.xyz)
-  print('7')
   crs(treepoints) = cs
-  print('8')
   hull_silva <- merge(hull_silva, tree.xyz, by = 'treeID')
-  print('9')
   crs(hull_silva) = cs
-  print('10')
-  #writeOGR(hull_silva, home, crownfile, driver="ESRI Shapefile", overwrite_layer=TRUE)
-  
-  #currdir <- getwd() #store your current working directory
-  #print('11')
-  #setwd("C:/Users/Alex/Desktop/asdf/lidartest/vectors/") #switch to your desired folder
-  #print('12')
+
   writeSpatialShape(hull_silva, crownfile) # write shapefile
-  #print('13')
-  #setwd(currdir) #switch back to parent folder
+
+  #proj4string(crownfile) <- CRS("+init=epsg:26911")
+  #projection(crownfile) <- CRS("+init=epsg:26911")
+  #proj4string(crownfile) <-CRS("+proj=utm +zone=11 +datum=WGS84")
   
   return(las_normal)
 }
