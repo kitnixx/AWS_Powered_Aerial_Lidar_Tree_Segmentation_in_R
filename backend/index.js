@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 var q = queue();
 q.autostart = true;
 q.concurrency = 1;
-q.timeout = 2*60*1000;  // 2 min timeout
+q.timeout = 60*60*1000;  // 60 min timeout
 
 let finishedIds = []
 let queuedIds = [];
