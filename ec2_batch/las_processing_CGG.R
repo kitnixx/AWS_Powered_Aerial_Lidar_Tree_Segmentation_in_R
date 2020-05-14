@@ -54,7 +54,7 @@ z
 algorithm
 
 # dalponte2016 params
-th_tree <- as.numeric(validInput(jsonFile["asdf"], 2))
+th_tree <- as.numeric(validInput(jsonFile["th_tree"], 2))
 th_seed <- as.numeric(validInput(jsonFile["th_seed"], 0.45))
 th_cr <- as.numeric(validInput(jsonFile["th_cr"], 0.55))
 max_cr <- as.numeric(validInput(jsonFile["max_cr"], 10))
