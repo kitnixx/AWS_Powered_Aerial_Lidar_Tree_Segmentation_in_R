@@ -6,10 +6,10 @@ baseDir = baseDir.replace(/\\/g, "/");
 
 var params = {
 	data: 'test-small-file',
-	res: 1,
+	res: 1.5,
 	ws: 10,
 	z: 10,
-	algorithm: 'watershed'
+	algorithm: 'silva2016f'
 };
 
 batch_process(params);
