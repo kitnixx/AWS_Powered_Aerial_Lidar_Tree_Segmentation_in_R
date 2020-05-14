@@ -149,7 +149,7 @@ app.get('/status/:id', (req, res) => {
     res.send(ret);
 });
 
-app.get('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
+app.delete('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
     let id = req.params.id;
     let finishedPos = finishedIds.map(item => item.id).indexOf(id);
     let queuePos = queuedIds.map(item => item.id).indexOf(id);
