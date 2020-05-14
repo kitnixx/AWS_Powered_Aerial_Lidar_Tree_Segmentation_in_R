@@ -20,10 +20,9 @@ library(sp)
 library(future)
 library(maptools)
 library(EBImage)
-library(proj4)
+#library(proj4)
 library(stringr)
 library(rjson)
-library(assertive)
 
 validInput <- function( param, default ){
   #print(length(unlist(param)) > 0)
