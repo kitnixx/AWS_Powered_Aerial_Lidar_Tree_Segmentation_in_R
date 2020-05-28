@@ -1,8 +1,5 @@
-#For preparing lidar data for analysis
-#Tailored to Canyon Creek lidar Data for Katharine Nicolato MS project
-
-#cory garms
-#13 March 2020
+# Disable warnings
+options(warn=-1)
 
 # Clear plots
 if(!is.null(dev.list())) dev.off()
@@ -20,7 +17,6 @@ library(sp)
 library(future)
 library(maptools)
 library(EBImage)
-#library(proj4)
 library(stringr)
 library(rjson)
 
@@ -87,7 +83,7 @@ ext
 if(TRUE){
 #filename for single las tile
 lasfile <- paste(home, lasName, sep = "")
-lasfile
+print(lasfile)
 las <- readLAS(lasfile)
 
 #create output directory 
@@ -152,7 +148,9 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
     # plot(snags, color="snagCls", colorPalette = rainbow(5)[-1])
   }
   else if(algorithm == "watershed"){
-    crowns = lastrees(las_normal, watershed(chm, th_tree = th_tree, tol = tol, ext = ext))
+    #crowns = lastrees(las_normal, watershed(chm, th_tree = th_tree, tol = tol, ext = ext))
+    #crowns = lastrees(las_normal, mcwatershed(chm, ttops, th_tree = 2, ID = "treeID"))
+    crowns = lastrees(las_normal, watershed(chm, th_tree = 2, tol = 1, ext = 1))
   }
 
   # watershed - https://rdrr.io/cran/lidR/man/watershed.html

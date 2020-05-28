@@ -6,17 +6,14 @@ baseDir = baseDir.replace(/\\/g, "/");
 
 var params = {
 	data: 'test-small-file',
-	res: 1.5,
-	ws: 10,
-	z: 10,
-	algorithm: 'silva2016f'
+	algorithm: 'silva2016'
 };
 
 batch_process(params);
 
 async function batch_process(params){
-    //await download.main(baseDir, params.data);
-    await batch.main(baseDir, params);
-    //await upload.main(baseDir, params.data);
+	let id = 'myjobid';
+    await download.main(baseDir, params.data);
+    await batch.main(baseDir, params, id);
     console.log("FINISHED");
 }

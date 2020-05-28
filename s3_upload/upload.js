@@ -11,7 +11,7 @@ const BUCKET = 'canyon-creek-bucket-0';
 
 //main();
 
-exports.main = async (baseDir, dataFolder) => {
+exports.main = async (baseDir, dataFolder, mainFolder, subFolder) => {
     if(baseDir != null && dataFolder != null){
         console.log("----------------------------------------------");
         console.log("Uploading files from Local to S3...");
@@ -23,7 +23,7 @@ exports.main = async (baseDir, dataFolder) => {
         for (var i=0; i<folders.length; i++) {
             var folderPath = dataDir + folders[i] + '/outputs/';
             var items = await getItems(folderPath); 
-            var outputDir = dataFolder+'/'+folders[i]+`/outputs-${new Date()}/`;
+            var outputDir = dataFolder+'/'+folders[i]+`/${mainFolder}/${subFolder}/`;
 
             for(let i in items){
                 await uploadFiles(outputDir, folderPath, items[i]);

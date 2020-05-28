@@ -11,8 +11,6 @@ install.packages("concaveman")
 install.packages("future")
 install.packages("maptools")
 install.packages("TreeLS")
-install.packages("proj4")
-install.packages("proj4string")
 
 #EBImage
 #https://rdrr.io/github/kroemerlab/ColocalizR/f/README.md

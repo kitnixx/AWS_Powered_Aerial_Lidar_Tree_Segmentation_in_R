@@ -1,5 +1,7 @@
+const upload = require('../s3_upload/upload.js');
 const shell = require("shelljs");
-var fs = require('fs');
+const fs = require('fs');
+const rimraf = require("rimraf");
 
 const JSON_FILE = "json.json"
 
@@ -8,7 +10,7 @@ const JSON_FILE = "json.json"
 
 //main();
 
-exports.main = async (baseDir, params) => {
+exports.main = async (baseDir, params, id) => {
     if(baseDir != null && params != null){
     	console.log("----------------------------------------------");
     	console.log("Running Rscript for each LAS file...");
@@ -21,21 +23,37 @@ exports.main = async (baseDir, params) => {
         	var folderPath = dataDir + folders[i] + '/';
             var items = await getItems(folderPath); 
 
-            if (!fs.existsSync(folderPath+'outputs'))
-			    fs.mkdirSync(folderPath+'outputs');
-
 			for(let i in items){
 				if(items[i].endsWith('.las')){					
 	                console.log(params);
 	                var jsonLocation = baseDir+'ec2_batch/'+JSON_FILE;
 	                await writeFile(jsonLocation, params);
 
-					await runRScript(
-                        baseDir,
-                        folderPath,
-                        items[i],
-                        jsonLocation
-                    );
+                    // create outputs directory for current file
+                    if (!fs.existsSync(folderPath+'outputs'))
+                        fs.mkdirSync(folderPath+'outputs');
+
+                    // run R script & upload to S3
+	                try {
+						await runRScript(
+	                        baseDir,
+	                        folderPath,
+	                        items[i],
+	                        jsonLocation
+	                    );
+
+                        await upload.main(baseDir, params.data, id, items[i].replace('.las',''));
+                    } catch (e) {
+                        console.log(`[JSON_FILE] - Failed to run R script or upload`);
+                    }
+
+                    // delete the outputs directory
+                    await new Promise(function(resolve, reject) {
+                        rimraf(folderPath+'outputs', function () {
+                            console.log("Cleaned up outputs directory");
+                            resolve();
+                        });
+                    });
 				}				
 			}
 

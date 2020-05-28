@@ -60,19 +60,28 @@ q.on('success', function (result, job) {
 var baseDir = process.cwd().replace('backend', '');
 baseDir = baseDir.replace(/\\/g, "/");
 
-app.post('/start', (req, res) => {
-    let params = req.body;
+app.post('/start', (req, res) => {    
     let id = uuidv4();
-    let job = {
+
+    let params = req.body;
+    if(params.timeout > 0){
+        if(params.timeout > 24)
+            params.timeout = 24;
+    } else {
+        params.timeout = 1;
+    }
+    params.timeout *= 60*1000;
+
+    let jobDetails = {
     	id: id,
     	startTime: (new Date()).toString(),
     	params: params
     }
-    queuedIds.push(job);
+    queuedIds.push(jobDetails);
 
-	q.push(async function () {
-        return new Promise(function (resolve, reject) {
-        	let queuePos = queuedIds.map(item => item.id).indexOf(id);
+    let job = async function (cb) {
+        await new Promise(function (resolve, reject) {
+            let queuePos = queuedIds.map(item => item.id).indexOf(id);
             if(queuePos >= 0){
                 console.log("----------------------------------------------");
                 console.log("Starting Job:", id);
@@ -81,9 +90,7 @@ app.post('/start', (req, res) => {
                 // fork another process
                 childProcess = fork('./backgroundThread.js');         
                 // send dataFolder to forked process
-                childProcess.send({
-                    params: queuedIds[queuePos].params
-                });
+                childProcess.send(queuedIds[queuePos]);
                 // listen for messages from forked process
                 childProcess.on('message', async (message) => {
                     console.log(`Child process completed successfully`);
@@ -116,10 +123,14 @@ app.post('/start', (req, res) => {
             else
                 resolve();
         });
-	})
+        cb();
+    };
+    console.log("TIMEOUT: " + params.timeout);
+    job.timeout = params.timeout;
+	q.push(job);
 
-	job.queuePos = queuedIds.length-1
-    res.send(job);
+	jobDetails.queuePos = queuedIds.length-1
+    res.send(jobDetails);
 });
 
 app.get('/status/:id', (req, res) => {
