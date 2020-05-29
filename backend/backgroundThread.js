@@ -29,28 +29,28 @@ async function batch_process(msg){
 		return "Failed do processing. Check Cloudwatch logs for more information.";
 	}
 
+	// upload jobParams details
+  	try{
+  		// create outputs directory for current file
+  		if (!fs.existsSync(baseDir + params.data + '/request/'))
+	        fs.mkdirSync(baseDir + params.data + '/request/');
+	    if (!fs.existsSync(baseDir + params.data + '/request/outputs/'))
+	        fs.mkdirSync(baseDir + params.data + '/request/outputs/');
+
+	  	msg.endTime = (new Date(new Date().toUTCString())).toString();
+	  	msg.message = "Successfully ran";
+		await writeFile(baseDir + params.data + '/request/outputs/jobParams.json', msg);
+		await upload.main(baseDir, params.bucket, params.data, id, 'jobParams');
+ 	} catch(e){
+		return "Failed to upload jobParams. Check Cloudwatch logs for more information.";
+	}
+
 	return "Successfully ran";
 }
 
 // receive message from master process
 process.on('message', async (msg) => {
   	let message = await batch_process(msg);  
-
-  	// upload jobParams details
-  	try{
-  		// create outputs directory for current file
-  		if (!fs.existsSync(baseDir + msg.params.data + '/request/'))
-	        fs.mkdirSync(baseDir + msg.params.data + '/request/');
-	    if (!fs.existsSync(baseDir + msg.params.data + '/request/outputs/'))
-	        fs.mkdirSync(baseDir + msg.params.data + '/request/outputs/');
-
-	  	msg.endTime = (new Date(new Date().toUTCString())).toString();
-	  	msg.message = message;
-		await writeFile(baseDir + msg.params.data + '/request/outputs/jobParams.json', msg);
-		await upload.main(baseDir, msg.params.bucket, msg.params.data, msg.id, 'jobParams');
- 	} catch(e){
-		message = "Failed to upload jobParams";
-	}
 
   	// send response to master process
   	process.send(message);
