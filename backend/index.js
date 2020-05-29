@@ -31,11 +31,10 @@ q.on('timeout', function (next, job) {
         finishedIds.push({
             id: queuedIds[0].id,
             startTime: queuedIds[0].startTime,
-            endTime: (new Date()).toString(),
+            endTime: (new Date(new Date().toUTCString())).toString(),
             params: queuedIds[0].params,
             status: "Timed Out"
         });
-        queuedIds.shift();
         if(childProcess != null){
             childProcess.kill('SIGINT');
         }
@@ -49,7 +48,7 @@ q.on('success', function (result, job) {
         finishedIds.push({
             id: queuedIds[0].id,
             startTime: queuedIds[0].startTime,
-            endTime: (new Date()).toString(),
+            endTime: (new Date(new Date().toUTCString())).toString(),
             params: queuedIds[0].params,
             status: "Finished",
             message: queuedIds[0].message
@@ -75,7 +74,7 @@ app.post('/start', (req, res) => {
 
     let jobDetails = {
     	id: id,
-    	startTime: (new Date()).toString(),
+    	startTime: (new Date(new Date().toUTCString())).toString(),
         params: params,
         message: ""
     }
@@ -182,7 +181,7 @@ app.delete('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
     	ret = {
             id: queuedIds[queuePos].id,
             startTime: queuedIds[queuePos].startTime,
-            endTime: (new Date()).toString(),
+            endTime: (new Date(new Date().toUTCString())).toString(),
             params: queuedIds[queuePos].params,
             status: "Canceled"
         };
@@ -193,7 +192,7 @@ app.delete('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
         ret = {
             id: queuedIds[queuePos].id,
             startTime: queuedIds[queuePos].startTime,
-            endTime: (new Date()).toString(),
+            endTime: (new Date(new Date().toUTCString())).toString(),
             params: queuedIds[queuePos].params,
             status: "Canceled"
         };

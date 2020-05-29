@@ -42,7 +42,7 @@ exports.main = async (baseDir, params, id) => {
 	                        jsonLocation
 	                    );
 
-                        await upload.main(baseDir, params.data, id, items[i].replace('.las',''));
+                        await upload.main(baseDir, bucket, params.data, id, items[i].replace('.las',''));
                     } catch (e) {
                         console.log(`[JSON_FILE] - Failed to run R script or upload`);
                     }

@@ -10,29 +10,29 @@ const fse = require('fs-extra');
 
 //main();
 
-exports.main = async (baseDir, dataFolder) => {
-    if(baseDir != null && dataFolder != null){
+exports.main = async (baseDir, bucket, dataFolder) => {
+    if(baseDir != null && bucket != null && dataFolder != null){
     	console.log("----------------------------------------------");
     	console.log("Downloading files from S3 to Local...");
         console.log("----------------------------------------------");
 
-    	await downloadS3Files(baseDir, dataFolder);
+    	await downloadS3Files(baseDir, bucket, dataFolder);
 
     	console.log("----------------------------------------------");
     } else {
-        console.log("Pass in folder you want to work with!");
+        console.log("Pass in bucket and folder you want to work with!");
     }
 }
 
-async function downloadS3Files(baseDir, dataFolder){
-	const BUCKET = 'canyon-creek-bucket-0';
+async function downloadS3Files(baseDir, bucket, dataFolder){
+	// const BUCKET = 'canyon-creek-bucket-0';
 
     var data = await new Promise(async function(resolve, reject) {
     	await s3.listObjects({
-    	    Bucket: BUCKET
+    	    Bucket: bucket
     	}).promise()
     	.then(function(data) {
-            console.log(data.Contents.length + " files found in '" + BUCKET + "' bucket");
+            console.log(data.Contents.length + " files found in '" + bucket + "' bucket");
             resolve(data.Contents);
     	});
     });
@@ -45,7 +45,7 @@ async function downloadS3Files(baseDir, dataFolder){
             var lastProgress = 0;
             await new Promise(async function(resolve, reject) {
                 s3.getObject({
-                    Bucket: BUCKET,
+                    Bucket: bucket,
                     Key: currentValue.Key
                 })
                 .on('httpDownloadProgress', function(evt) {

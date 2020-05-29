@@ -5,14 +5,14 @@ const fs = require('fs');
 
 //const myArgs = process.argv.slice(2);
 //const DATA_DIR = '../' + myArgs[0];
-const BUCKET = 'canyon-creek-bucket-0';
+// const BUCKET = 'canyon-creek-bucket-0';
 
 //const OUTPUT_DIR = myArgs[0];
 
 //main();
 
-exports.main = async (baseDir, dataFolder, mainFolder, subFolder) => {
-    if(baseDir != null && dataFolder != null){
+exports.main = async (baseDir, bucket, dataFolder, mainFolder='defaultMainFolder', subFolder='defaultSubFolder') => {
+    if(baseDir != null && bucket != null && dataFolder != null){
         console.log("----------------------------------------------");
         console.log("Uploading files from Local to S3...");
         console.log("----------------------------------------------");
@@ -23,24 +23,24 @@ exports.main = async (baseDir, dataFolder, mainFolder, subFolder) => {
         for (var i=0; i<folders.length; i++) {
             var folderPath = dataDir + folders[i] + '/outputs/';
             var items = await getItems(folderPath); 
-            var outputDir = dataFolder+'/'+folders[i]+`/${mainFolder}/${subFolder}/`;
+            var outputDir = dataFolder+'/'+mainFolder+'/'+folders[i]+'/'+subFolder+'/';
 
             for(let i in items){
-                await uploadFiles(outputDir, folderPath, items[i]);
+                await uploadFiles(bucket, outputDir, folderPath, items[i]);
             }
         }
         console.log("----------------------------------------------");
     } else {
-        console.log("Pass in folder you want to work with!");
+        console.log("Pass in bucket and folder you want to work with!");
     }
 }
 
-async function uploadFiles(outputDir, folderPath, item){
+async function uploadFiles(bucket, outputDir, folderPath, item){
     await new Promise(async function(resolve, reject) {
         let data = folderPath + item;
         const fileContent = fs.readFileSync(data);
         const params = {
-            Bucket: BUCKET,
+            Bucket: bucket,
             Key: outputDir + item, // File name you want to save as in S3
             Body: fileContent
         };
