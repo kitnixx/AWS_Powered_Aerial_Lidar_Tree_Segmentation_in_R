@@ -93,7 +93,8 @@ app.post('/start', (req, res) => {
                 childProcess.send(queuedIds[queuePos]);
                 // listen for messages from forked process
                 childProcess.on('message', async (message) => {
-                    console.log(`Child process completed successfully`);
+                    console.log(message);
+                    console.log(`Child process completed`);
 
                     // delete the data directory
                     await new Promise(function(resolve, reject) {

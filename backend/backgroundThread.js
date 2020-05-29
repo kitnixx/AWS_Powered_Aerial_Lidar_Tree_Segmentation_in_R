@@ -7,6 +7,7 @@ baseDir = baseDir.replace(/\\/g, "/");
 async function batch_process(msg){
 	let id = msg.id;
 	let params = msg.params;
+	
 	try{
 		await download.main(baseDir, params.data);
 	} catch(e){
