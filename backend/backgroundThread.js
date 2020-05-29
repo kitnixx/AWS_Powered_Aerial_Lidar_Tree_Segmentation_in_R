@@ -17,8 +17,10 @@ async function batch_process(msg){
 	try{
 		await batch.main(baseDir, params, id);
 	} catch(e){
-		return "Faile do processing. Check Cloudwatch logs for more information.";
+		return "Failed do processing. Check Cloudwatch logs for more information.";
 	}
+
+	return "Successfully ran.";
 }
 
 // receive message from master process

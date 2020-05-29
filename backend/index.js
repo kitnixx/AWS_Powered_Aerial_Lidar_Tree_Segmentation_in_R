@@ -51,7 +51,8 @@ q.on('success', function (result, job) {
             startTime: queuedIds[0].startTime,
             endTime: (new Date()).toString(),
             params: queuedIds[0].params,
-            status: "Finished"
+            status: "Finished",
+            message: queuedIds[0].message
         });
         queuedIds.shift();
     }
@@ -75,7 +76,8 @@ app.post('/start', (req, res) => {
     let jobDetails = {
     	id: id,
     	startTime: (new Date()).toString(),
-    	params: params
+        params: params,
+        message: ""
     }
     queuedIds.push(jobDetails);
 
@@ -94,6 +96,8 @@ app.post('/start', (req, res) => {
                 // listen for messages from forked process
                 childProcess.on('message', async (message) => {
                     console.log(message);
+                    queuedIds[queuePos].message = message;
+
                     console.log(`Child process completed`);
 
                     // delete the data directory
