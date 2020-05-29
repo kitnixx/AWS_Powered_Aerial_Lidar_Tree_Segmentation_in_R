@@ -117,6 +117,9 @@ app.post('/start', (req, res) => {
                         });
                     });
 
+                    // do this after ending childProcess b/c this block of code still depends on queuedIds params
+                    queuedIds.shift();
+
                     resolve();
                 });
             }
@@ -189,8 +192,7 @@ app.delete('/cancel/:id', (req, res) => {  // TODO: remove from queue as well
             params: queuedIds[queuePos].params,
             status: "Canceled"
         };
-        finishedIds.push(ret);
-        queuedIds.shift();
+        finishedIds.push(ret);        
         if(childProcess != null){
             childProcess.kill('SIGINT');            
         }
