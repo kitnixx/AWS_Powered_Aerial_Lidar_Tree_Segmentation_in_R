@@ -34,7 +34,10 @@ async function downloadS3Files(baseDir, bucket, dataFolder){
     	.then(function(data) {
             console.log(data.Contents.length + " files found in '" + bucket + "' bucket");
             resolve(data.Contents);
-    	});
+    	})
+        .catch((error) => {
+            reject(error);
+        });
     });
 
     const start = async () => {
