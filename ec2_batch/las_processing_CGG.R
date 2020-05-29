@@ -96,8 +96,8 @@ p <- util_makeZhangParam()#take parameters from Zhang paper
 cores <- detectCores() #how many processor cores are available
 plan(multisession, workers = 2L)#set up parallel processing (2L = 2 Clusters)
 #Choose one of the following 2 options:
-#set_lidr_threads(cores/2)#1. for dedicated processing, use all cores
-set_lidr_threads(((cores-2) /2 ))#2. for background processing, reserve 2 cores
+set_lidr_threads(cores/2)#1. for dedicated processing, use all cores
+#set_lidr_threads(((cores-2) /2 ))#2. for background processing, reserve 2 cores
 
 #define function to detect ground, normalize point cloud, and find treetops
 spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
