@@ -23,11 +23,11 @@ async function batch_process(msg){
 		return "Failed to download or ran out of memory. Check Cloudwatch logs for more information.";
 	}
 
-	/*try{
+	try{
 		await batch.main(baseDir, params, id);
 	} catch(e){
 		return "Failed do processing. Check Cloudwatch logs for more information.";
-	}*/
+	}
 
 	return "Successfully ran";
 }
