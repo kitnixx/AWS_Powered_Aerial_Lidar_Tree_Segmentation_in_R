@@ -41,10 +41,14 @@ exports.main = async (baseDir, params, id) => {
 	                        items[i],
 	                        jsonLocation
 	                    );
-
-                        await upload.main(baseDir, bucket, params.data, id, items[i].replace('.las',''));
                     } catch (e) {
-                        console.log(`[JSON_FILE] - Failed to run R script or upload`);
+                        console.log(`[batch.js] - Failed to run R script`);
+                    }
+
+                    try {
+                    	await upload.main(baseDir, params.bucket, params.data, id, items[i].replace('.las',''));
+                    } catch (e) {
+                        console.log(`[batch.js] - Failed to upload outputs`);
                     }
 
                     // delete the outputs directory
