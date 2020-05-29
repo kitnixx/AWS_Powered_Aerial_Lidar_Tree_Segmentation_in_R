@@ -28,6 +28,10 @@ docker pull gearsmotion789/canyoncreeklidar
 docker run -d -it --name rbase --restart unless-stopped gearsmotion789/rbase
 docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped gearsmotion789/canyoncreeklidar
 
+# Run container with Cloudwatch Logging
+docker run --log-driver=awslogs --log-opt awslogs-group=CanyonCreekLidar -d alpine echo 'a cloudonaut.io example'
+docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped --log-driver=awslogs --log-opt awslogs-group=CanyonCreekLidar gearsmotion789/canyoncreeklidar
+
 # Open container terminal
 docker exec -it rbase bash
 docker exec -it canyoncreeklidar bash
@@ -44,6 +48,9 @@ docker logs canyoncreeklidar
 
 ### Setup Docker on EC2 Instance
 - https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
+
+### Cloudwatch Loggin
+- https://cloudonaut.io/a-simple-way-to-manage-log-messages-from-containers-cloudwatch-logs/#:~:text=Simple%20Example,and%20attach%20the%20CloudWatchLogsFullAccess%20policy
 
 ### Prequistites
 1. Download node.js: https://nodejs.org/en/download
