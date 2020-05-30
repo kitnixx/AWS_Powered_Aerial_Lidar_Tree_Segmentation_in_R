@@ -40,7 +40,7 @@ docker exec -it canyoncreeklidar bash
 ### Extras
 ```
 # Download folder from S3 to local
-aws s3 sync "s3://canyon-creek-bucket-0/data2/items/outputs-Thu May 14 2020 18:37:04 GMT+0000 (Coordinated Universal Time)" .
+aws s3 sync "s3://canyon-creek-bucket-0/2017 Tiles/items/82d0b0a9-4b53-4625-9b48-a72e1f518735" .
 
 # Get log outputs from running docker container
 docker logs canyoncreeklidar
