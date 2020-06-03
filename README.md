@@ -45,7 +45,7 @@ aws s3 sync "s3://canyon-creek-bucket-0/<folder>/<job id>" "./<job id>"
 docker logs canyoncreeklidar
 ```
 
-### Prequistites for running locally
+### Setup for running locally
 - Install node.js: https://nodejs.org/en/download
 - Install git: https://git-scm.com/downloads
 - Install R: https://ftp.osuosl.org/pub/cran
@@ -57,9 +57,8 @@ docker logs canyoncreeklidar
 - ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
 - ```npm install``` in CanyonCreekLidar (root) directory
 - Install all dependencies via R from ```ec2_batch/install.R```
-- ```cd backend```
-- ```node test.js``` for quick test
-- ```node index.js``` for backend REST API server
+- ```node backend/test.js``` for quick test
+- ```node backend/index.js``` for backend REST API server
 
 ### Information
 - backend (runs on EC2 instance)
