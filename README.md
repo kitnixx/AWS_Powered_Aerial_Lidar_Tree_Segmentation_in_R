@@ -2,17 +2,20 @@
 
 ### Job Operations
 ```
-# GET /start/<S3 main folder>
-localhost/start/data
-ec2-18-234-255-76.compute-1.amazonaws.com/start/data
+# POST <ec2 dns>/start]
+{
+  "bucket": "canyon-creek-lidar-0",
+  "data": "test-small-file",
+  "algorithm": "dalponte2016",
+  "ws": 10
+}
+--- other parameters may be passed too ---
 
-# GET /status/<job id>
+# GET <ec2 dns>/status/<job id>
 localhost/status/<job id>
 ec2-18-234-255-76.compute-1.amazonaws.com/status/<job id>
 
-# GET /cancel/<job id>
-localhost/cancel/<job id>
-ec2-18-234-255-76.compute-1.amazonaws.com/cancel/<job id>
+# DELETE <ec2 dns>/cancel/<job id>
 ```
 
 ### Typical Docker Commands
@@ -42,7 +45,7 @@ docker logs canyoncreeklidar
 ### Prequistites
 1. Download node.js: https://nodejs.org/en/download
 2. Download git: https://git-scm.com/downloads
-3. ```git clone 
+3. ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
 3. Run ```npm install``` in each root directory
 
 ### Information
