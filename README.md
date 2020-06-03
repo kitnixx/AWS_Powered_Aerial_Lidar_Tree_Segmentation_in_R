@@ -43,10 +43,16 @@ docker logs canyoncreeklidar
 ```
 
 ### Prequistites
-1. Download node.js: https://nodejs.org/en/download
-2. Download git: https://git-scm.com/downloads
-3. ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
-3. Run ```npm install``` in each root directory
+- Download node.js: https://nodejs.org/en/download
+- Download git: https://git-scm.com/downloads
+- Download R: https://ftp.osuosl.org/pub/cran
+- Add R to environmental variabale PATH
+  - C:/Program Files/R/<version>/bin
+- ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
+- ```npm install``` in CanyonCreekLidar (root) directory
+- Install all dependencies via R from ```ec2_batch/install.R```
+- ```cd backend```
+- ```node test.js```
 
 ### Information
 - s3_download (runs on EC2 instance)
