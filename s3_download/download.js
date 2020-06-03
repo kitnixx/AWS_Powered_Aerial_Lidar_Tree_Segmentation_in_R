@@ -1,14 +1,7 @@
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
-
 const rimraf = require("rimraf");
 const fse = require('fs-extra');
-
-//const myArgs = process.argv.slice(2);
-//const DATA_DIR = '../';     // directory to save folder to
-//const GET_DIR = myArgs[0] + '/';    // folder to download from S3
-
-//main();
 
 exports.main = async (baseDir, bucket, dataFolder) => {
     if(baseDir != null && bucket != null && dataFolder != null){
@@ -25,9 +18,7 @@ exports.main = async (baseDir, bucket, dataFolder) => {
 }
 
 async function downloadS3Files(baseDir, bucket, dataFolder){
-	// const BUCKET = 'canyon-creek-bucket-0';
-
-    var data = await new Promise(async function(resolve, reject) {
+    let data = await new Promise(async function(resolve, reject) {
     	await s3.listObjects({
     	    Bucket: bucket
     	}).promise()
