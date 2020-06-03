@@ -1,15 +1,6 @@
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
-
 const fs = require('fs');
-
-//const myArgs = process.argv.slice(2);
-//const DATA_DIR = '../' + myArgs[0];
-// const BUCKET = 'canyon-creek-bucket-0';
-
-//const OUTPUT_DIR = myArgs[0];
-
-//main();
 
 exports.main = async (baseDir, bucket, dataFolder, mainFolder='defaultMainFolder', subFolder='defaultSubFolder') => {
     if(baseDir != null && bucket != null && dataFolder != null){
