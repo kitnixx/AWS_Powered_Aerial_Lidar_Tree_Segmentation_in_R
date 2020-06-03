@@ -1,8 +1,9 @@
 # CanyonCreekLidar
 
 ### Job Operations
+- Send job
 ```
-# POST <ec2 dns>/start]
+POST <ec2 dns>/start
 {
   "bucket": "canyon-creek-lidar-0",
   "data": "test-small-file",
@@ -10,12 +11,14 @@
   "ws": 10
 }
 --- other parameters may be passed too ---
-
-# GET <ec2 dns>/status/<job id>
-localhost/status/<job id>
-ec2-18-234-255-76.compute-1.amazonaws.com/status/<job id>
-
-# DELETE <ec2 dns>/cancel/<job id>
+```
+- Get job status
+```
+GET <ec2 dns>/status/<job id>
+```
+- Cancel job
+```
+DELETE <ec2 dns>/cancel/<job id>
 ```
 
 ### Typical Docker Commands
