@@ -24,7 +24,7 @@ DELETE <ec2 dns>/cancel/<job id>
 ### Typical Docker Commands
 ```
 # SSH into EC2 instance
-ssh -i "key.pem" ec2-user@<ec2 DNS>
+ssh -i "key.pem" ec2-user@<ec2 dns>
 
 # Pull image
 docker pull gearsmotion789/canyoncreeklidar
@@ -77,15 +77,15 @@ docker logs canyoncreeklidar
   - modified version of "s3_upload", uploads all folders from local machine to S3
 
 ### Normal GitHub setup
-- Make a zip just in case things go wrong
+- Link existing folder with this repo
   - git init
   - git remote add origin https://github.com/gearsmotion789/CanyonCreekLidar.git
   - git fetch
   - git checkout master
-  - git pull origin master
+  - git pull
   - git add .
-  - git commit -m "stuff"
-  - git push origin master
+  - git commit -m "comment"
+  - git push
 - Pull changes
   - git fetch
   - git pull
