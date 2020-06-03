@@ -5,11 +5,6 @@ const rimraf = require("rimraf");
 
 const JSON_FILE = "json.json"
 
-//const myArgs = process.argv.slice(2);
-//const DATA_DIR = '../' + myArgs[0];     // directory to data
-
-//main();
-
 exports.main = async (baseDir, params, id) => {
     if(baseDir != null && params != null){
     	console.log("----------------------------------------------");
@@ -60,25 +55,6 @@ exports.main = async (baseDir, params, id) => {
                     });
 				}				
 			}
-
-            //await getFileNames(items, folderPath).then(async function(response) {
-                /*var json = {
-                    dir: `${folderPath}`,
-                    shpFile: response.shpFile,
-                    lasFiles: response.lasFiles
-                };
-                console.log(json);
-                await writeFile(JSON_FILE, json);*/
-
-                // create outputs directory if doesn't exist
-	        	/*if (!fs.existsSync(currentDir+'/outputs'))
-				    fs.mkdirSync(currentDir+'/outputs');*/
-
-				/*for(let j in response.lasFiles){
-					console.log(response.lasFiles[j]);
-					//await runRScript(currentDir, response.lasFiles[j]);
-				}*/
-            //});
         }
 
         console.log("----------------------------------------------");
@@ -113,34 +89,3 @@ function writeFile(fileName, content){
         });
     });
 }
-
-/*function getFileNames(items, folderPath){
-    return new Promise(async function(resolve, reject) {
-        var shpFile;
-        var lasFiles = [];
-
-        for (var i=0; i<items.length; i++) {
-            if(items[i].endsWith(".shp"))
-                shpFile = items[i];
-            else if(items[i].endsWith(".las")){
-                if(items[i].includes("_clipped") || items[i].includes("_normalize")){
-                    try {
-                        await fs.unlinkSync(`${folderPath}/${items[i]}`)
-                        //file removed
-                    } catch(err) {
-                        console.error(err)
-                    }
-                }
-
-                lasFiles.push(items[i]);
-            }
-        }
-
-        var ret = {
-            shpFile: shpFile,
-            lasFiles: lasFiles
-        }
-
-        resolve(ret);
-    });
-}*/
