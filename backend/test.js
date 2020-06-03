@@ -24,11 +24,11 @@ async function batch_process(msg){
 	let id = msg.id;
 	let params = msg.params;
 	
-	/*try{
+	try{
 		await download.main(baseDir, params.bucket, params.data);
 	} catch(e){
 		return "Failed to download or ran out of memory. Check Cloudwatch logs for more information.";
-	}*/
+	}
 
 	try{
 		await batch.main(baseDir, params, id);
@@ -37,7 +37,7 @@ async function batch_process(msg){
 	}
 	
 	// upload jobParams details
-  	/*try{
+  	try{
   		// create outputs directory for current file
   		if (!fs.existsSync(baseDir + params.data + '/request/'))
 	        fs.mkdirSync(baseDir + params.data + '/request/');
@@ -50,7 +50,7 @@ async function batch_process(msg){
 		await upload.main(baseDir, params.bucket, params.data, id, 'jobParams');
  	} catch(e){
 		return "Failed to upload jobParams. Check Cloudwatch logs for more information.";
-	}*/
+	}
 
 	return "Successfully ran";
 }
