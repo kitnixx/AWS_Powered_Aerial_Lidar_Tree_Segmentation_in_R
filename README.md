@@ -58,6 +58,9 @@ docker logs canyoncreeklidar
 - ```node test.js```
 
 ### Information
+- backend (runs on EC2 instance)
+  - hosts backend so that you can make REST API calls to it for job operations
+  - when POST occurs, it triggers s3_download, ec2_batch, and then s3_upload internal to ec2_batch, then uploads job params via s2_upload
 - s3_download (runs on EC2 instance)
   - downloads data from S3 to local machine
 - ec2_batch (runs on EC2 instance)
