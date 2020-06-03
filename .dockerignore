@@ -1,7 +1,5 @@
-data
-node_modules
 key.pem
+node_modules
 .DS_Store
 .RData
 .Rhistory
-VSWorkspace.code-workspace
