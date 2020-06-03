@@ -54,7 +54,7 @@ docker logs canyoncreeklidar
 - Install R: https://ftp.osuosl.org/pub/cran
 - Add R to environmental variabale PATH
   - ```C:/Program Files/R/<version>/bin```
-- Install AWS CLI: https://awscli.amazonaws.com/AWSCLIV2.msi
+- Install AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html#cliv2-windows-install
   - ```aws configure```
   - Fill credentials with AWS user credentials in IAM users
 - ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
