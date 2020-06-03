@@ -34,6 +34,9 @@ docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped --log-dr
 
 # Open container terminal
 docker exec -it canyoncreeklidar bash
+
+# Stop container
+docker rm -f canyoncreeklidar
 ```
 
 ### Extras
