@@ -8,6 +8,7 @@
 #WORKDIR /usr/src/app
 #COPY ec2_batch/install.R .
 #RUN Rscript ./install.R
+#RUN rm ./install.R
 
 FROM gearsmotion789/rbase
 WORKDIR /usr/src/app
