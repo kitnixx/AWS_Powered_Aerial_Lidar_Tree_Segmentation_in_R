@@ -80,8 +80,6 @@ th_tree
 tol
 ext
 
-filter <- "mean"
-
 if(TRUE){
 #filename for single las tile
 lasfile <- paste(home, lasName, sep = "")
