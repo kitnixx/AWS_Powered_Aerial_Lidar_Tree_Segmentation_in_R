@@ -43,6 +43,7 @@ docker rm -f canyoncreeklidar
 ```
 # Download folder from S3 to local
 aws s3 sync "s3://canyon-creek-bucket-0/<folder>/<job id>" "./<job id>"
+aws s3 sync "s3://canyon-creek-bucket-0/test-small-file/asdf" "./asdf"
 
 # Get log outputs from running docker container
 docker logs canyoncreeklidar
