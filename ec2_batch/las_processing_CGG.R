@@ -31,11 +31,8 @@ validInput <- function( param, default ){
 
 arg <- commandArgs(TRUE)
 home <- arg[1]
-home <- "C:/Users/Alex/Desktop/batch_processing/test-small-file/item/"
-#lasName <- arg[2]
-lasName <- "plot13_2017.las"
-#jsonFile <- fromJSON(file = arg[3])
-jsonFile <- fromJSON(file = "C:/Users/Alex/Desktop/batch_processing/ec2_batch/json.json")
+lasName <- arg[2]
+jsonFile <- fromJSON(file = arg[3])
 outputDir <- paste(home, 'outputs', "/", sep="")
 
 home
