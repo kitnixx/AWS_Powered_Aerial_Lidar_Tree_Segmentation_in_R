@@ -20,12 +20,14 @@ async function batch_process(msg){
 	try{
 		await download.main(baseDir, params.bucket, params.data);
 	} catch(e){
+		console.log(e);
 		return "Failed to download or ran out of memory. Check Cloudwatch logs for more information.";
 	}
 
 	try{
 		await batch.main(baseDir, params, id);
 	} catch(e){
+		console.log(e);
 		return "Failed do processing. Check Cloudwatch logs for more information.";
 	}
 
@@ -42,6 +44,7 @@ async function batch_process(msg){
 		await writeFile(baseDir + params.data + '/request/outputs/jobParams.json', msg);
 		await upload.main(baseDir, params.bucket, params.data, id, 'jobParams');
  	} catch(e){
+ 		console.log(e);
 		return "Failed to upload jobParams. Check Cloudwatch logs for more information.";
 	}
 

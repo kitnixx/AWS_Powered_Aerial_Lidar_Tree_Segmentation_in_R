@@ -80,6 +80,8 @@ th_tree
 tol
 ext
 
+filter <- "mean"
+
 if(TRUE){
 #filename for single las tile
 lasfile <- paste(home, lasName, sep = "")
@@ -119,9 +121,10 @@ spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
   print('Ground Statistics: ') 
   print(groundmetrics)
 
-
   print('Creating CHM...')
   chm <- grid_canopy(las_normal, res = res, pitfree(c(0,2,5,10,15), c(0, 1.5))) #### INSERT NORMALIZED LAS ####
+  #CHMsmoothing(chm, filter, ws)
+
   print("Detecting Local Maxima...")
   ttops = tree_detection(las_normal, lmf(ws = ws)) #from las file
   ttops = subset(ttops, Z >= z )

@@ -60,8 +60,10 @@ docker logs canyoncreeklidar
 - ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
 - ```npm install``` in CanyonCreekLidar (root) directory
 - Install all dependencies via R from ```ec2_batch/install.R```
-- ```node backend/test.js``` for quick test
-- ```node backend/index.js``` for backend REST API server
+- ```cd backend```
+  - must be in backend directory, otherwise things don't work
+- ```node test.js``` for quick test
+- ```node index.js``` for backend REST API server
 
 ### Information
 - backend (runs on EC2 instance)
