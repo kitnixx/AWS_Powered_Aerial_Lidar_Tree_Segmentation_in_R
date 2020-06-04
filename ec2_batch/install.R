@@ -10,7 +10,7 @@ install.packages("dplyr")
 install.packages("concaveman")
 install.packages("future")
 install.packages("maptools")
-install.packages("TreeLS")
+install.packages("rLiDAR")
 
 #EBImage
 #https://rdrr.io/github/kroemerlab/ColocalizR/f/README.md

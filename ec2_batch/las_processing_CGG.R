@@ -8,6 +8,7 @@ cat("\014")
 # Clean workspace
 rm(list=ls())
 
+library(rLiDAR) # must put this package above all other packages in order to avoid error - needed for CHMSmoothing
 library(lidR)
 library(parallel)
 library(dplyr)
@@ -16,7 +17,7 @@ library(rgdal)
 library(sp)
 library(future)
 library(maptools)
-library(EBImage)
+#library(EBImage)	# needed to remove this b/c it interferes with watershed algorithm in lidR
 library(stringr)
 library(rjson)
 
@@ -30,8 +31,11 @@ validInput <- function( param, default ){
 
 arg <- commandArgs(TRUE)
 home <- arg[1]
-lasName <- arg[2]
-jsonFile <- fromJSON(file = arg[3])
+home <- "C:/Users/Alex/Desktop/batch_processing/test-small-file/item/"
+#lasName <- arg[2]
+lasName <- "plot13_2017.las"
+#jsonFile <- fromJSON(file = arg[3])
+jsonFile <- fromJSON(file = "C:/Users/Alex/Desktop/batch_processing/ec2_batch/json.json")
 outputDir <- paste(home, 'outputs', "/", sep="")
 
 home
@@ -80,7 +84,14 @@ th_tree
 tol
 ext
 
-if(TRUE){
+filter <- validInput(jsonFile["filter"], "mean")
+smooth_ws <- as.numeric(validInput(jsonFile["smooth_ws"], 5))
+smooth <- as.numeric(validInput(jsonFile["smooth"], 1))
+
+filter
+smooth_ws
+smooth
+
 #filename for single las tile
 lasfile <- paste(home, lasName, sep = "")
 print(lasfile)
@@ -99,86 +110,7 @@ plan(multisession, workers = 2L)#set up parallel processing (2L = 2 Clusters)
 set_lidr_threads(cores/2)#1. for dedicated processing, use all cores
 #set_lidr_threads(((cores-2) /2 ))#2. for background processing, reserve 2 cores
 
-#define function to detect ground, normalize point cloud, and find treetops
-spitshine.LAS = function(las, chmfile, crownfile, res, ws, z)
-{
-  print("Starting Ground Point Detection...")
-  las <- lasground(las, pmf(p$ws, p$th))#cloth simulation filter 
-  print("Ground Point Detection Complete! Starting DTM Creation...")
-  dtm = grid_terrain(las, res = res, algorithm = knnidw())
-  print("DTM Creation Complete! Starting Normalization...")
-  las_normal = lasnormalize(las, dtm) #### INSERT DOGAMI BARE EARTH HERE IF DESIRED. START HERE 
-  #### INSTEAD OF AT GROUND POINT DETECTION (LINE 52) ####
-  las_normal = lasfilter(las_normal, Z >= 0) #dtmB = grid_terrain(las_pmf, algorithm = tin()))
-  print("Normalization Complete! Computing Cloud Statistics...")
-  ground <- lasfilter(las_normal, Classification == 2L)
-  metrics = cloud_metrics(las_normal, ~myMetrics(X, Y, Z))  # TODO: Want to skip lines 52-60
-  print('Point Cloud Statistics: ') 
-  print(metrics)
-  groundmetrics <- cloud_metrics(ground, ~myMetrics(X, Y, Z))
-  print('Ground Statistics: ') 
-  print(groundmetrics)
-
-  print('Creating CHM...')
-  chm <- grid_canopy(las_normal, res = res, pitfree(c(0,2,5,10,15), c(0, 1.5))) #### INSERT NORMALIZED LAS ####
-  #CHMsmoothing(chm, filter, ws)
-
-  print("Detecting Local Maxima...")
-  ttops = tree_detection(las_normal, lmf(ws = ws)) #from las file
-  ttops = subset(ttops, Z >= z )
-
-
-  print("Local Maxima Detection Complete! Segmenting Tree Crowns...")
-  print(algorithm)
-  if(algorithm == "silva2016"){
-    crowns = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
-  }
-  else if(algorithm == "dalponte2016"){
-    crowns = lastrees(las_normal, dalponte2016(chm,ttops,th_tree = th_tree,th_seed = th_seed,th_cr = th_cr,max_cr = max_cr,ID = "treeID"))
-  }
-  else if(algorithm == "wing2015"){
-    bbpr_thresholds <- matrix(c(0.80, 0.80, 0.70,
-                          0.85, 0.85, 0.60,
-                          0.80, 0.80, 0.60,
-                          0.90, 0.90, 0.55),
-                          nrow =3, ncol = 4)
-
-    crowns = lassnags(las_normal, wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = low_int_thrsh,uppr_int_thrsh = uppr_int_thrsh,pt_den_req = pt_den_req,BBPRthrsh_mat = bbpr_thresholds))
-    # plot(las_normal, color="snagCls", colorPalette = rainbow(5))
-    # snags <- lasfilter(las_normal, snagCls > 0)
-    # plot(snags, color="snagCls", colorPalette = rainbow(5)[-1])
-  }
-  else if(algorithm == "watershed"){
-    #crowns = lastrees(las_normal, watershed(chm, th_tree = th_tree, tol = tol, ext = ext))
-    #crowns = lastrees(las_normal, mcwatershed(chm, ttops, th_tree = 2, ID = "treeID"))
-    crowns = lastrees(las_normal, watershed(chm, th_tree = 2, tol = 1, ext = 1))
-  }
-
-  # watershed - https://rdrr.io/cran/lidR/man/watershed.html
-  # wing2015 - https://rdrr.io/cran/lidR/man/wing2015.html
-  # dalponte2016 - https://rdrr.io/cran/lidR/man/dalponte2016.html
-
-  hull_silva <- tree_hulls(crowns, type = "concave", concavity = 1)
-  print('Tree Crowns Segmented! Preparing Outputs...')
-  treestats = tree_metrics(crowns, .stdtreemetrics)
-  treestats = treestats@data
-  writeRaster(chm, chmfile, overwrite=TRUE)
-  las.spatial = as.spatial(crowns) #convert to spatial data
-  las.df=as.data.frame(las.spatial) #convert to data frame
-  tree.xyz=las.df %>% group_by(treeID) %>% slice(which.max(Z))
-  treepoints=SpatialPointsDataFrame(tree.xyz[,20:21], tree.xyz)
-  crs(treepoints) = cs
-  hull_silva <- merge(hull_silva, tree.xyz, by = 'treeID')
-  crs(hull_silva) = cs
-
-  writeSpatialShape(hull_silva, crownfile) # write shapefile
-
-  #proj4string(crownfile) <- CRS("+init=epsg:26911")
-  #projection(crownfile) <- CRS("+init=epsg:26911")
-  #proj4string(crownfile) <-CRS("+proj=utm +zone=11 +datum=WGS84")
-  
-  return(las_normal)
-}
+ptm <- proc.time()  #START THE CLOCK
 
 myMetrics = function(x, y, z)
 {
@@ -195,26 +127,75 @@ myMetrics = function(x, y, z)
   return(metrics)
 }
 
+#define function to detect ground, normalize point cloud, and find treetops
+print("Starting Ground Point Detection...")
+las <- lasground(las, pmf(p$ws, p$th))#cloth simulation filter 
+print("Ground Point Detection Complete! Starting DTM Creation...")
+dtm = grid_terrain(las, res = res, algorithm = knnidw())
+print("DTM Creation Complete! Starting Normalization...")
+las_normal = lasnormalize(las, dtm) #### INSERT DOGAMI BARE EARTH HERE IF DESIRED. START HERE 
+#### INSTEAD OF AT GROUND POINT DETECTION (LINE 52) ####
+las_normal = lasfilter(las_normal, Z >= 0) #dtmB = grid_terrain(las_pmf, algorithm = tin()))
+print("Normalization Complete! Computing Cloud Statistics...")
+ground <- lasfilter(las_normal, Classification == 2L)
+metrics = cloud_metrics(las_normal, ~myMetrics(X, Y, Z))  # TODO: Want to skip lines 52-60
+print('Point Cloud Statistics: ') 
+print(metrics)
+groundmetrics <- cloud_metrics(ground, ~myMetrics(X, Y, Z))
+print('Ground Statistics: ') 
+print(groundmetrics)
 
-ptm <- proc.time()#START THE CLOCK
-spitshine.LAS(las, chmfile, crownfile, res, ws, z)
-proc.time() - ptm#STOP THE CLOCK
+print('Creating CHM...')
+chm <- grid_canopy(las_normal, res = res, pitfree(c(0,2,5,10,15), c(0, 1.5))) #### INSERT NORMALIZED LAS ####
 
-
-# ptm <- proc.time()#START THE CLOCK
-# 
-# for (i in LASlist) {
-#   lasfile <- (i)
-#   stemdetection.LAS(readLAS(lasfile), vox, dens, n, rad)
-#   }
-# proc.time() - ptm#STOP THE CLOCK
-
-
-# plot(las, color = "Classification")
-
-# Plot CHM
-#plot(chm, xlab = "", ylab = "", xaxt='n', yaxt = 'n')
-# Add dominant treetops to the plot
-#plot(ttops_sub, col = "blue", pch = 20, cex = 0.5, add = TRUE)
+print('CHM Smoothing...')
+if(smooth == 1){
+  CHMsmoothing(chm, filter, smooth_ws)
 }
 
+print("Detecting Local Maxima...")
+ttops = tree_detection(las_normal, lmf(ws = ws)) #from las file
+ttops = subset(ttops, Z >= z )
+
+
+print("Local Maxima Detection Complete! Segmenting Tree Crowns...")
+print(algorithm)
+if(algorithm == "silva2016"){
+  crowns = lastrees(las_normal, silva2016(chm, ttops)) ##### INSERT USFS R6 CHM ##### 
+}
+if(algorithm == "dalponte2016"){
+  crowns = lastrees(las_normal, dalponte2016(chm,ttops,th_tree = th_tree,th_seed = th_seed,th_cr = th_cr,max_cr = max_cr,ID = "treeID"))
+}
+if(algorithm == "wing2015"){
+  bbpr_thresholds <- matrix(c(0.80, 0.80, 0.70,
+                        0.85, 0.85, 0.60,
+                        0.80, 0.80, 0.60,
+                        0.90, 0.90, 0.55),
+                        nrow =3, ncol = 4)
+
+  crowns = lassnags(las_normal, wing2015(neigh_radii = c(1.5, 1, 2),low_int_thrsh = low_int_thrsh,uppr_int_thrsh = uppr_int_thrsh,pt_den_req = pt_den_req,BBPRthrsh_mat = bbpr_thresholds))
+}
+if(algorithm == "watershed"){
+  crowns = lastrees(las_normal, watershed(chm, th_tree = th_tree, tol = tol, ext = ext))
+}
+
+# watershed - https://rdrr.io/cran/lidR/man/watershed.html
+# wing2015 - https://rdrr.io/cran/lidR/man/wing2015.html
+# dalponte2016 - https://rdrr.io/cran/lidR/man/dalponte2016.html
+
+hull_silva <- tree_hulls(crowns, type = "concave", concavity = 1)
+print('Tree Crowns Segmented! Preparing Outputs...')
+treestats = tree_metrics(crowns, .stdtreemetrics)
+treestats = treestats@data
+writeRaster(chm, chmfile, overwrite=TRUE)
+las.spatial = as.spatial(crowns) #convert to spatial data
+las.df=as.data.frame(las.spatial) #convert to data frame
+tree.xyz=las.df %>% group_by(treeID) %>% slice(which.max(Z))
+treepoints=SpatialPointsDataFrame(tree.xyz[,20:21], tree.xyz)
+crs(treepoints) = cs
+hull_silva <- merge(hull_silva, tree.xyz, by = 'treeID')
+crs(hull_silva) = cs
+
+writeSpatialShape(hull_silva, crownfile) # write shapefile
+
+proc.time() - ptm   #STOP THE CLOCK
