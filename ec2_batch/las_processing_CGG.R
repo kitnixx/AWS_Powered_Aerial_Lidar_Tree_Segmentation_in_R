@@ -192,7 +192,6 @@ treepoints=SpatialPointsDataFrame(tree.xyz[,20:21], tree.xyz)
 crs(treepoints) = cs
 hull_silva <- merge(hull_silva, tree.xyz, by = 'treeID')
 crs(hull_silva) = cs
-
-writeSpatialShape(hull_silva, crownfile) # write shapefile
-
+writeOGR(hull_silva, outputDir, layer="crownfile", driver="ESRI Shapefile", overwrite_layer=TRUE)
+writeOGR(treepoints, outputDir, layer="topsfile", driver="ESRI Shapefile", overwrite_layer=TRUE)
 proc.time() - ptm   #STOP THE CLOCK
