@@ -27,10 +27,10 @@ DELETE <ec2 dns>/cancel/<job id>
 ssh -i "key.pem" ec2-user@<ec2 dns>
 
 # Pull image
-docker pull gearsmotion789/canyoncreeklidar
+docker pull tobyloki/canyoncreeklidar
 
 # Run container with Cloudwatch Logging
-docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped --log-driver=awslogs --log-opt awslogs-group=CanyonCreekLidar gearsmotion789/canyoncreeklidar
+docker run -p 80:80 -d --name canyoncreeklidar --restart unless-stopped --log-driver=awslogs --log-opt awslogs-group=CanyonCreekLidar tobyloki/canyoncreeklidar
 
 # Open container terminal
 docker exec -it canyoncreeklidar bash
@@ -58,7 +58,7 @@ docker logs canyoncreeklidar
 - Install AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html#cliv2-windows-install
   - ```aws configure```
   - Fill credentials with AWS user credentials in IAM users
-- ```git clone https://github.com/gearsmotion789/CanyonCreekLidar.git```
+- ```git clone https://github.com/tobyloki/CanyonCreekLidar.git```
 - ```npm install``` in CanyonCreekLidar (root) directory
 - Install all dependencies via R from ```ec2_batch/install.R```
 - ```cd backend```
@@ -82,7 +82,7 @@ docker logs canyoncreeklidar
 ### Normal GitHub setup
 - Link existing folder with this repo
   - git init
-  - git remote add origin https://github.com/gearsmotion789/CanyonCreekLidar.git
+  - git remote add origin https://github.com/tobyloki/CanyonCreekLidar.git
   - git fetch
   - git checkout master
   - git pull
