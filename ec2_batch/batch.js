@@ -64,7 +64,7 @@ exports.main = async (baseDir, params, id) => {
 }
 
 function runRScript(baseDir, arg1, arg2, arg3){
-    var script = baseDir+"ec2_batch/las_processing_CGG.R";
+    var script = baseDir+"ec2_batch/las_processing";
 
     if (
       shell.exec(`Rscript ${script} "${arg1}" "${arg2}" "${arg3}"`).code !== 0

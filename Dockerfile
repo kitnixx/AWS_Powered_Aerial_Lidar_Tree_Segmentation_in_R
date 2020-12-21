@@ -16,7 +16,7 @@
 # RUN Rscript ./install.R
 # RUN rm ./install.R
 
-FROM gearsmotion789/rbase
+FROM tobyloki/rbase
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install --production --silent

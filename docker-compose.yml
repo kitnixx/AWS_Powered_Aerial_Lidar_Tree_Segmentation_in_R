@@ -2,7 +2,7 @@ version: '3'
 services:
     backend:
         build: .
-        image: gearsmotion789/canyoncreeklidar
+        image: tobyloki/canyoncreeklidar
         container_name: canyoncreeklidar
         ports:
             - 3000:80

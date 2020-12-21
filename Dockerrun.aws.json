@@ -1,7 +1,7 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-      "Name": "gearsmotion789/canyoncreeklidar",
+      "Name": "tobyloki/canyoncreeklidar",
       "Update": "true"
     },
     "Ports": [

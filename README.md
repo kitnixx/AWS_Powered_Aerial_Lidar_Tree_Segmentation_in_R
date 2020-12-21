@@ -7,7 +7,7 @@ POST <ec2 dns>/start
 {
   "bucket": "canyon-creek-lidar-0",
   "data": "test-small-file",
-  "algorithm": "dalponte2016",
+  "algorithm": "mcws",
   "ws": 10
 }
 --- other parameters may be passed too ---

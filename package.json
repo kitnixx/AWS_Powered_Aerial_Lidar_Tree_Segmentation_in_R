@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gearsmotion789/CanyonCreekLidar.git"
+    "url": "git+https://github.com/tobyloki/CanyonCreekLidar.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gearsmotion789/CanyonCreekLidar/issues"
+    "url": "https://github.com/tobyloki/CanyonCreekLidar/issues"
   },
-  "homepage": "https://github.com/gearsmotion789/CanyonCreekLidar#readme",
+  "homepage": "https://github.com/tobyloki/CanyonCreekLidar#readme",
   "dependencies": {
     "aws-sdk": "^2.658.0",
     "body-parser": "^1.19.0",

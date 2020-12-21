@@ -13,7 +13,7 @@ async function main(){
 		params: {
 			bucket: 'canyon-creek-bucket-0',
 			data: 'test-small-file',
-			algorithm: 'silva2016'
+			algorithm: 'mcws'
 		}
 	}
 

@@ -65,8 +65,8 @@ app.post('/start', (req, res) => {
 
     let params = req.body;
     if(params.timeout > 0){
-        if(params.timeout > 24*60)  // 24 hours max
-            params.timeout = 24*60;
+        if(params.timeout > 72*60)  // 72 hours max
+            params.timeout = 72*60;
     } else {
         params.timeout = 1*60;  // default is 1 hour
     }
