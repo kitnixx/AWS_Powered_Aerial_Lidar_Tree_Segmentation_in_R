@@ -1,5 +1,5 @@
 # AWS-Powered Lidar Tree Segmentation Using the lidR Package in R
-## Developed by Alex Feng and Katie Nicolato
+### Developed by Alex Feng and Katie Nicolato
 
 This is the experimental framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R. It serves as a skeleton or guide in creating your own cloud-based lidar tree segmentation app.
 
