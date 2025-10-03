@@ -42,16 +42,16 @@ Below are resources for modifying and executing the application.
 
 ### Information on Script Names
 - backend (runs on EC2 instance)
-  - hosts backend so that you can make REST API calls to it for job operations
-  - when POST occurs, it triggers s3_download, ec2_batch, and then s3_upload internal to ec2_batch, then uploads job params via s2_upload
+  - Hosts backend so that you can make REST API calls to it for job operations
+  - When POST occurs, it triggers s3_download, ec2_batch, and then s3_upload internal to ec2_batch, then uploads job params via s2_upload
 - s3_download (runs on EC2 instance)
-  - downloads data from S3 to local machine
+  - Downloads data from S3 to local machine
 - ec2_batch (runs on EC2 instance)
-  - generates the outputs from the Rscript
+  - Generates the outputs from the Rscript
 - s3_upload (runs on EC2 instance)
-  - uploads outputs to S3 folder
+  - Uploads outputs to S3 folder
 - pc_to_s3 (runs on your own local machine)
-  - modified version of "s3_upload", uploads all folders from local machine to S3
+  - Modified version of "s3_upload", uploads all folders from local machine to S3
 
 ### Setup for Local Part of the Workflow
 - Install node.js: https://nodejs.org/en/download
@@ -66,7 +66,7 @@ Below are resources for modifying and executing the application.
 - ```npm install``` in CanyonCreekLidar (root) directory
 - Install all dependencies via R from ```ec2_batch/install.R```
 - ```cd backend```
-  - must be in backend directory, otherwise things don't work
+  - Must be in backend directory, otherwise things don't work
 - ```node test.js``` for quick test
 - ```node index.js``` for backend REST API server
 
