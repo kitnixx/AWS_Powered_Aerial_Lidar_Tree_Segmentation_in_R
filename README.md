@@ -11,7 +11,7 @@ The workflow of the app is as follows:
 1. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.
 2. Spin up your AWS EC2 instance of choice - the default is free tier.
 3. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.
-5. Use Postman to locally customize the tree segmentation parameters in the frontend R script.
+5. Use Postman to locally customize tree segmentation parameters in the frontend R script.
 6. Queue the processing job in Postman and post it to the cloud - SEND IT!
 7. Monitor progress with AWS Cloudwatch.
 8. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.
