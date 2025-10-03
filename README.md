@@ -40,19 +40,6 @@ Below are resources for modifying and executing the application.
   - git commit -m "comment"
   - git push
 
-### Information on Script Names
-- backend (runs on EC2 instance)
-  - Hosts backend so that you can make REST API calls to it for job operations
-  - When POST occurs, it triggers s3_download, ec2_batch, and then s3_upload internal to ec2_batch, then uploads job params via s2_upload
-- s3_download (runs on EC2 instance)
-  - Downloads data from S3 to local machine
-- ec2_batch (runs on EC2 instance)
-  - Generates the outputs from the Rscript
-- s3_upload (runs on EC2 instance)
-  - Uploads outputs to S3 folder
-- pc_to_s3 (runs on your own local machine)
-  - Modified version of "s3_upload", uploads all folders from local machine to S3
-
 ### Setup for Local Part of the Workflow
 - Install node.js: https://nodejs.org/en/download
 - Install git: https://git-scm.com/downloads
@@ -69,6 +56,19 @@ Below are resources for modifying and executing the application.
   - Must be in backend directory, otherwise things don't work
 - ```node test.js``` for quick test
 - ```node index.js``` for backend REST API server
+
+### Information on Script Names
+- backend (runs on EC2 instance)
+  - Hosts backend so that you can make REST API calls to it for job operations
+  - When POST occurs, it triggers s3_download, ec2_batch, and then s3_upload internal to ec2_batch, then uploads job params via s2_upload
+- s3_download (runs on EC2 instance)
+  - Downloads data from S3 to local machine
+- ec2_batch (runs on EC2 instance)
+  - Generates the outputs from the Rscript
+- s3_upload (runs on EC2 instance)
+  - Uploads outputs to S3 folder
+- pc_to_s3 (runs on your own local machine)
+  - Modified version of "s3_upload", uploads all folders from local machine to S3
 
 ### Typical Docker Commands
 ```
