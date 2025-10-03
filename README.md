@@ -22,6 +22,25 @@ Below are resources for modifying and executing the application. Enjoy!
 
 ## Resources
 
+### Typical GitHub Repository Setup
+- Link existing folder with this repo
+  - git init
+  - git remote add origin https://github.com/tobyloki/CanyonCreekLidar.git
+  - git fetch
+  - git checkout master
+  - git pull
+  - git add .
+  - git commit -m "comment"
+  - git push
+- Pull changes
+  - git fetch
+  - git pull
+- Push changes
+  - first do Pull changes
+  - git add .
+  - git commit -m "comment"
+  - git push
+
 ### Information on Script Names
 - backend (runs on EC2 instance)
   - hosts backend so that you can make REST API calls to it for job operations
@@ -90,25 +109,6 @@ GET <ec2 dns>/status/<job id>
 ```
 DELETE <ec2 dns>/cancel/<job id>
 ```
-
-### Typical GitHub Repository Setup
-- Link existing folder with this repo
-  - git init
-  - git remote add origin https://github.com/tobyloki/CanyonCreekLidar.git
-  - git fetch
-  - git checkout master
-  - git pull
-  - git add .
-  - git commit -m "comment"
-  - git push
-- Pull changes
-  - git fetch
-  - git pull
-- Push changes
-  - first do Pull changes
-  - git add .
-  - git commit -m "comment"
-  - git push
 
 ### Extras
 ```
