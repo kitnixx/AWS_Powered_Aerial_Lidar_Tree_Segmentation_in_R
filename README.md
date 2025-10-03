@@ -1,4 +1,6 @@
-# AWS-Powered Tree Segmentation in R
+# AWS-Powered Lidar Tree Segmentation in R
+
+This repository contains a DIY cloud application for 
 
 ### Job Operations
 - Send job
