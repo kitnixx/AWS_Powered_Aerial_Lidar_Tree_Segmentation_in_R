@@ -8,6 +8,7 @@ This is the experimental framework of a customizable DIY cloud application for l
 <img width="150" height="200" alt="image" src="https://github.com/user-attachments/assets/b25469c1-969e-4a03-98a1-7a10ba4a5cc9" />
 
 
+
 The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model, digital terrain model and point cloud metrics.
 
 The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app. The app can be customized for deployment across multiple instances at once.
