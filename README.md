@@ -24,7 +24,7 @@ Below are resources for modifying and executing the application.
 ### Typical GitHub Repository Setup
 - Link existing folder with this repo
   - git init
-  - git remote add origin https://github.com/tobyloki/CanyonCreekLidar.git
+  - git remote add origin https://github.com/kitnixx/AWS_Powered_Lidar_Tree_Segmentation_in_R.git
   - git fetch
   - git checkout master
   - git pull
