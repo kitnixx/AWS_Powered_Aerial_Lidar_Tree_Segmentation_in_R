@@ -1,6 +1,6 @@
 # AWS-Powered Lidar Tree Segmentation in R
 
-<img width="2000" height="333" alt="image" src="https://github.com/user-attachments/assets/2954fcc1-cc69-4894-afa6-3c1c68ad7f94" />  
+<img width="1504" height="965" alt="image" src="https://github.com/user-attachments/assets/a16f9eb2-eb77-4d77-98c1-913e61c5af72" />
 
 <img width="175" height="125" alt="image" src="https://github.com/user-attachments/assets/3fc6f01e-ffb9-4001-9766-e5b4c81f3fff" />
 <img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/6bee0bd7-1fc7-493b-8110-3da195ffdac8" />
