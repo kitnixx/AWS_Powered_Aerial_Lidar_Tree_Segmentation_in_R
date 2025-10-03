@@ -1,4 +1,4 @@
-# CanyonCreekLidar
+# EC2-Powered Individual Tree Segmentation in R
 
 ### Job Operations
 - Send job
