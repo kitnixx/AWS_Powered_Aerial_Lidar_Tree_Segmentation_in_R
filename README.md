@@ -9,13 +9,13 @@
 #
 <br/>
 This is the experimental framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R. It serves as a skeleton or guide in creating your own cloud-based tree segmentation app. This original workflow was devloped by Katie Nicolato and Alex Feng in cooperation with the Aerial Information Systems Lab at Oregon State University and the US Forest Service.
-<br/>
+
 The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model, digital terrain model and point cloud metrics.
-<br/>
+
 The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app. The app can be customized for deployment across multiple instances at once.
-<br/>
+
 The workflow of the app is as follows:
-<br/>
+
 1. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.
 2. Spin up your AWS EC2 instance of choice - the default is free tier.
 3. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.
