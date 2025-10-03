@@ -11,7 +11,7 @@ The workflow of the app is as follows:
 1. Edit the js.node backend script (we recommend the Visual Studio IDE) to customize an Amazon Machine Image (AMI) of R software.
 2. Package the AMI in a Docker container to deploy in the AWS environment.
 3. Spin up your AWS EC2 instance of choice - the default is free tier.
-4. Deploy the AMI to AWS servers using the AWS Elastic Beanstalk management service.
+4. Deploy the Docker container to AWS servers using the AWS Elastic Beanstalk management service.
 5. Locally modify the R script in Postman to customize lidar segmentation parameters.
 6. Queue the processing job in Postman and post it to the cloud - SEND IT!
 7. Monitor processing progress with AWS Cloudwatch.
