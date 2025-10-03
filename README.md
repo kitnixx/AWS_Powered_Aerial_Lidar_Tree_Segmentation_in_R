@@ -15,30 +15,30 @@ This is the experimental framework of a customizable DIY cloud application for l
 
 #
 
-The workflow of the app is as follows:
+<br/>The workflow of the app is as follows:
 
-1. Acquire and prepare lidar point clouds in .las format through classifying. cleaning, cliping and merging to create areas of interest.
-
-   
-2. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.
+1. Acquire and prepare lidar point clouds in .las format through classifying. cleaning, cliping and merging to create areas of interest.<br/><br/>
 
    
-3. Spin up your AWS EC2 instance of choice - the default is free tier.
+2. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
 
    
-5. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.
+3. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
 
    
-6. Use Postman to locally customize tree segmentation parameters in the frontend R script.
+5. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
    
-7. Queue the processing job in Postman and post it to the cloud - SEND IT!
+6. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
    
-8. Monitor progress with AWS Cloudwatch.
+7. Queue the processing job in Postman and post it to the cloud - SEND IT!<br/><br/>
 
    
-9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.
+8. Monitor progress with AWS Cloudwatch.<br/><br/>
+
+   
+9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.<br/><br/>
 
   
 10. Rejoice!
