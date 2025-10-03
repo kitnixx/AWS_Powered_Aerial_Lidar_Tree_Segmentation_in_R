@@ -1,4 +1,4 @@
-# AWS-Powered Aerial Lidar Tree Segmentation in R
+## AWS-Powered Aerial Lidar Tree Segmentation in R
 <br/>
 <img width="850" height="500" alt="image" src="https://github.com/user-attachments/assets/d3889ca8-ff08-4eb4-a8b3-8fdd57167192" /><br/>
 <br/>
@@ -50,7 +50,7 @@ Below are resources for modifying and executing the application.
 ### Typical GitHub Repository Setup
 - Link existing folder with this repo
   - git init
-  - git remote add origin https://github.com/kitnixx/AWS_Powered_Lidar_Tree_Segmentation_in_R.git
+  - git remote add origin https://github.com/kitnixx/AWS_Powered_Aerial_Lidar_Tree_Segmentation_in_R.git
   - git fetch
   - git checkout master
   - git pull
@@ -76,7 +76,7 @@ Below are resources for modifying and executing the application.
   - ```aws configure```
   - Fill credentials with AWS user credentials in IAM users
 - ```git clone https://github.com/tobyloki/CanyonCreekLidar.git```
-- ```npm install``` in AWS_Powered_Lidar_Tree_Segmentation_in_R (root) directory
+- ```npm install``` in AWS_Powered_Aerial_Lidar_Tree_Segmentation_in_R (root) directory
 - Install all dependencies via R from ```ec2_batch/install.R```
 - ```cd backend```
   - Must be in backend directory, otherwise things don't work
