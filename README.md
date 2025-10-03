@@ -8,7 +8,7 @@ The app is fully customizable from instance tier to tree segmentation algorithm.
 
 The workflow of the app is as follows:
 
-1. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) of the R software.
+1. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) of the R software and scripts.
 2. Spin up your AWS EC2 instance of choice - the default is free tier.
 3. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.
 5. Use Postman to locally customize the tree segmentation algorithm parameters in the frontend R script.
