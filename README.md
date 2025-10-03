@@ -1,11 +1,11 @@
 # AWS-Powered Lidar Tree Segmentation in R
 
 <img width="850" height="500" alt="image" src="https://github.com/user-attachments/assets/d3889ca8-ff08-4eb4-a8b3-8fdd57167192" />
+<br>
 <img width="175" height="125" alt="image" src="https://github.com/user-attachments/assets/3fc6f01e-ffb9-4001-9766-e5b4c81f3fff" />
 <img width="300" height="250" alt="image" src="https://github.com/user-attachments/assets/6bee0bd7-1fc7-493b-8110-3da195ffdac8" />
 <img width="150" height="200" alt="image" src="https://github.com/user-attachments/assets/b25469c1-969e-4a03-98a1-7a10ba4a5cc9" />
-
-
+<br>
   
 This is the experimental framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R. It serves as a skeleton or guide in creating your own cloud-based tree segmentation app. This original workflow was devloped by Katie Nicolato and Alex Feng in cooperation with the Aerial Information Systems Lab at Oregon State University and the US Forest Service.
 
