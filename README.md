@@ -2,7 +2,7 @@
 
 This is the experimental framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R. It serves as a skeleton or guide in creating your own cloud-based tree segmentation app. This original workflow was devloped by Katie Nicolato and Alex Feng in cooperation with the Aerial Information Systems Lab at Oregon State University and the US Forest Service.
 
-<img width="666" height="312" alt="image" src="https://github.com/user-attachments/assets/1c7b99b3-0360-4782-9009-ff963fef0fff" />
+<img width="100" height="50" alt="image" src="https://github.com/user-attachments/assets/1c7b99b3-0360-4782-9009-ff963fef0fff" />
 
 The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model, digital terrain model and point cloud metrics.
 
