@@ -18,7 +18,9 @@ The workflow of the app is as follows:
 8. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.
 9. Rejoice!
 
-Below are resources for modifying and executing certain tasks:
+Below are resources for modifying and executing the application. Enjoy!
+
+## Resources
 
 ### Information on Script Names
 - backend (runs on EC2 instance)
