@@ -1,4 +1,4 @@
-# AWS-Powered Lidar Tree Segmentation in R
+# AWS-Powered Lidar Tree Segmentation Using the lidR Package in R
 
 This repository contains the framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R using the lidR package.
 
