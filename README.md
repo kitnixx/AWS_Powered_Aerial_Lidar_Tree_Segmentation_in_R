@@ -41,8 +41,8 @@ This is the experimental framework of a customizable DIY cloud application for a
 9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.<br/><br/>
 
   
-10. Rejoice!
-
+10. Rejoice!<br/>
+<br/>
 ## Resources
 
 Below are resources for modifying and executing the application.
