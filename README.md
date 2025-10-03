@@ -45,7 +45,7 @@ This is the experimental framework of a customizable DIY cloud application for a
 
 ## Resources
 
-Below are resources for modifying and executing the application.<br/>
+Below are resources for modifying and executing the application.
 
 ### Typical GitHub Repository Setup
 - Link existing folder with this repo
@@ -64,7 +64,7 @@ Below are resources for modifying and executing the application.<br/>
   - first do Pull changes
   - git add .
   - git commit -m "comment"
-  - git push<br/>
+  - git push
 
 ### Setup for Local Part of the Workflow
 - Install node.js: https://nodejs.org/en/download
@@ -81,7 +81,7 @@ Below are resources for modifying and executing the application.<br/>
 - ```cd backend```
   - Must be in backend directory, otherwise things don't work
 - ```node test.js``` for quick test
-- ```node index.js``` for backend REST API server<br/>
+- ```node index.js``` for backend REST API server
 
 ### Information on Script Names
 - backend (runs on EC2 instance)
@@ -94,7 +94,7 @@ Below are resources for modifying and executing the application.<br/>
 - s3_upload (runs on EC2 instance)
   - Uploads outputs to S3 folder
 - pc_to_s3 (runs on your own local machine)
-  - Modified version of "s3_upload", uploads all folders from local machine to S3<br/>
+  - Modified version of "s3_upload", uploads all folders from local machine to S3
 
 ### Typical Docker Commands
 ```
@@ -113,7 +113,6 @@ docker exec -it canyoncreeklidar bash
 # Stop container
 docker rm -f canyoncreeklidar
 ```
-<br/>
 
 ### Lidar Processing Job Operations
 - Send job
@@ -135,7 +134,6 @@ GET <ec2 dns>/status/<job id>
 ```
 DELETE <ec2 dns>/cancel/<job id>
 ```
-<br/>
 
 ### Extras
 ```
@@ -146,7 +144,6 @@ aws s3 sync "s3://canyon-creek-bucket-0/test-small-file/asdf" "./asdf"
 # Get log outputs from running docker container
 docker logs canyoncreeklidar
 ```
-<br/>
 
 ### More References
 - Setup Docker on EC2 Instance
