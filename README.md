@@ -18,7 +18,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>The workflow of the app is as follows:<br/>
 <br/>
-1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains tools to perform these actions if you choose to integrate them into your frontend script.<br/><br/>
+1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains tools to perform these actions if you choose to integrate them into your frontend script for the app.<br/><br/>
 
    
 2. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
