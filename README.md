@@ -15,7 +15,7 @@ This is the experimental framework of a customizable DIY cloud application for l
 
 #
 
-<br/>The workflow of the app is as follows:
+The workflow of the app is as follows:
 
 1. Acquire and prepare lidar point clouds in .las format through classifying. cleaning, cliping and merging to create areas of interest.
 
