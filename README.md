@@ -1,4 +1,4 @@
-## AWS-Powered Aerial Lidar Tree Segmentation in R
+# AWS-Powered Aerial Lidar Tree Segmentation in R
 <br/>
 <img width="850" height="500" alt="image" src="https://github.com/user-attachments/assets/d3889ca8-ff08-4eb4-a8b3-8fdd57167192" /><br/>
 <br/>
