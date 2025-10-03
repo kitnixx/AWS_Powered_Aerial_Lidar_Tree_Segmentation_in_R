@@ -1,21 +1,22 @@
 # AWS-Powered Lidar Tree Segmentation Using the lidR Package in R
 
-This repository contains the framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R using the lidR package.
+This repository contains the experimental framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R. It serves as a skeleton or guide for you to modify in creation of your own lidar segmentation app.
 
 The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model and digital terrain model.
 
-The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app.
+The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app. The app can be customized for deployment across multiple instances at once.
 
 The workflow of the app is as follows:
 
-1. Modify the js.node script to customize an Amazon Machine Image (AMI) of R software.
+1. Edit the js.node backend script (we recommend the Visual Studio IDE) to customize an Amazon Machine Image (AMI) of R software.
 2. Package the AMI in a Docker container to deploy in the AWS environment.
 3. Spin up your AWS EC2 instance of choice - the default is free tier.
 4. Deploy the AMI to AWS servers using the AWS Elastic Beanstalk management service.
-6. Locally modify the R script in Postman to customize lidar segmentation parameters.
-7. Queue the processing job in Postman and send it to the cloud.
-8. Monitor lidar processing progress with AWS Cloudwatch.
-9. Download segmentation outputs from the AWS S3 bucket.
+5. Locally modify the R script in Postman to customize lidar segmentation parameters.
+6. Queue the processing job in Postman and post it to the cloud - SEND IT!
+7. Monitor processing progress with AWS Cloudwatch.
+8. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.
+9. Rejoice!
 
 ### Job Operations
 - Send job
