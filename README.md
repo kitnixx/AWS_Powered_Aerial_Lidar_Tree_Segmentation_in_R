@@ -1,20 +1,21 @@
 # AWS-Powered Lidar Tree Segmentation in R
 
-This repository contains the framework of a customizable DIY cloud app for lidar-based individual tree segmentation in R. 
+This repository contains the framework of a customizable DIY cloud application for lidar-based individual tree segmentation in R using the lidR package.
 
-The app is powered by Amazon Web Service's (AWS) EC2 instances and uses the AWS S3 bucket to store lidar point cloud files in .las format. The R script segments the .las files contained in the S3 bucket.
+The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model and digital terrain model.
 
-The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively have an AWS account, key pair and S3 bucket established to deploy the app.
+The app is fully customizable from instance tier to tree segmentation algorithm. You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app.
 
 The workflow of the app is as follows:
 
-1. Modify the js.node script to customize an Amazon Machine Image (AMI) of R software
-2. Package the AMI in a Docker container to deploy in the AWS environment
-3. Select and spin up your AWS EC2 instance of choice - the default is free tier
-4. Deploy the AMI to AWS servers with AWS Elastic Beanstalk management service
-6. Locally modify the R script in Postman to customize lidar tree segmentation parameters
-7. Queue the job in Postman and send it to the cloud
-8. Monitor processing progress with AWS Cloudwatch
+1. Modify the js.node script to customize an Amazon Machine Image (AMI) of R software.
+2. Package the AMI in a Docker container to deploy in the AWS environment.
+3. Spin up your AWS EC2 instance of choice - the default is free tier.
+4. Deploy the AMI to AWS servers using the AWS Elastic Beanstalk management service.
+6. Locally modify the R script in Postman to customize lidar segmentation parameters.
+7. Queue the processing job in Postman and send it to the cloud.
+8. Monitor lidar processing progress with AWS Cloudwatch.
+9. Download segmentation outputs from the AWS S3 bucket.
 
 ### Job Operations
 - Send job
