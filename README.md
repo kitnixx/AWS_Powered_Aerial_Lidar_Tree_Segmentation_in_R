@@ -43,9 +43,9 @@ This is the experimental framework of a customizable DIY cloud application for a
   
 10. Rejoice!
 
-Below are resources for modifying and executing the application.
-
 ## Resources
+
+Below are resources for modifying and executing the application.
 
 ### Typical GitHub Repository Setup
 - Link existing folder with this repo
