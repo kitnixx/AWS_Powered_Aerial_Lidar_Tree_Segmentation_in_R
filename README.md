@@ -42,7 +42,7 @@ This is the experimental framework of a customizable DIY cloud application for a
 
   
 10. Rejoice!<br/>
-<br/>
+
 ## Resources
 
 Below are resources for modifying and executing the application.
