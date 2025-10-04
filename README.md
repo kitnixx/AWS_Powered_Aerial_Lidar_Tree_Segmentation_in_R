@@ -28,9 +28,9 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
 
-<br/>&emsp;&emsp;<img width="500" height="125" alt="visual_studio_b72bcf9a-8de0-4ce0-816b-a9aa030260c0-4577576" src="https://github.com/user-attachments/assets/9be453b6-3651-4917-9661-c3b9476b8e3f" />&emsp;&emsp;
-<img width="250" height="125" alt="Node js_logo svg" src="https://github.com/user-attachments/assets/605bf1e7-0566-4318-8595-bcb33aeee1fc" />&emsp;&emsp;
-<img width="125" height="125" alt="R_logo svg" src="https://github.com/user-attachments/assets/cc8c4ba4-d6aa-4156-8a8e-94a17b4b205a" />
+<br/>&emsp;&emsp;<img width="400" height="100" alt="visual_studio_b72bcf9a-8de0-4ce0-816b-a9aa030260c0-4577576" src="https://github.com/user-attachments/assets/9be453b6-3651-4917-9661-c3b9476b8e3f" />&emsp;&emsp;
+<img width="250" height="100" alt="Node js_logo svg" src="https://github.com/user-attachments/assets/605bf1e7-0566-4318-8595-bcb33aeee1fc" />&emsp;&emsp;
+<img width="125" height="150" alt="R_logo svg" src="https://github.com/user-attachments/assets/cc8c4ba4-d6aa-4156-8a8e-94a17b4b205a" />
 
    
 <br/>4. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
