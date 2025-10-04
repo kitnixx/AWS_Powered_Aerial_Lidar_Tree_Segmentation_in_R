@@ -21,7 +21,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 &emsp;&emsp;<img width="100" height="100" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;&emsp;
 <img width="100" height="100" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" /><br/>
 
-<br/>2. Upload .las files from your local or cloud storage method to your S3 bucket.
+<br/>2. Upload .las files from local or cloud storage to your AWS S3 bucket.<br/>
 
 &emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
 
