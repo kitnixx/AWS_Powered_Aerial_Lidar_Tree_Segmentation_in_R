@@ -47,7 +47,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>7. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
-&emsp;&emsp;
+&emsp;&emsp;<img width="300" height="100" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
    
 <br/>8. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
