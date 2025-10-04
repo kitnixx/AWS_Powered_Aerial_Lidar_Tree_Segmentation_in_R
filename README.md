@@ -21,42 +21,46 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 &emsp;&emsp;<img width="100" height="100" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;&emsp;
 <img width="100" height="100" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" /><br/>
 
-<br/>2. Download all programs necessary for local development listed in the section, "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
+<br/>2. Upload .las files from your local or cloud storage method to your S3 bucket.
+
+&emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
+
+<br/>3. Download all programs necessary for local development listed in the section, "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
 <br/>&emsp;&emsp;<img width="225" height="100" alt="github-logo-vector" src="https://github.com/user-attachments/assets/63ed02aa-395f-481f-8963-de8c7a0503c5" />&emsp;&emsp;
 <img width="250" height="100" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
 
-<br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app. Refer to the section, "Information on Script Names."<br/><br/>
+<br/>4. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app. Refer to the section, "Information on Script Names."<br/><br/>
 
 &emsp;&emsp;<img width="400" height="100" alt="visual_studio_b72bcf9a-8de0-4ce0-816b-a9aa030260c0-4577576" src="https://github.com/user-attachments/assets/9be453b6-3651-4917-9661-c3b9476b8e3f" />&emsp;&emsp;
 <img width="250" height="100" alt="Node js_logo svg" src="https://github.com/user-attachments/assets/605bf1e7-0566-4318-8595-bcb33aeee1fc" />&emsp;&emsp;
 <img width="125" height="150" alt="R_logo svg" src="https://github.com/user-attachments/assets/cc8c4ba4-d6aa-4156-8a8e-94a17b4b205a" />
 
-<br/>4. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
+<br/>5. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
 
 &emsp;&emsp;<img width="100" height="100" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
-<br/>5. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
+<br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
 &emsp;&emsp;
    
-<br/>6. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
+<br/>7. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
 &emsp;&emsp;
    
-<br/>7. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
+<br/>8. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
 &emsp;&emsp;
    
-<br/>8. Monitor progress with AWS Cloudwatch.<br/><br/>
+<br/>9. Monitor progress with AWS Cloudwatch.<br/><br/>
 
 &emsp;&emsp;<img width="100" height="100" alt="aws-cloudwatch-8x" src="https://github.com/user-attachments/assets/9a93cf05-37ca-45ac-99b7-aac5f48d8563" />
 
-<br/>9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.<br/><br/>
+<br/>10. Download tree segmentation outputs from your AWS S3 bucket to your local storage device.<br/><br/>
 
 &emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
 
-<br/>10. Rejoice!<br/><br/>
+<br/>11. Rejoice!<br/><br/>
 
 ## Resources
 
