@@ -17,7 +17,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 #
 
 <br/>The workflow of the app is as follows:<br/>
-<br/>
+
 <br/>1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
 &emsp;&emsp;<img width="125" height="125" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;
