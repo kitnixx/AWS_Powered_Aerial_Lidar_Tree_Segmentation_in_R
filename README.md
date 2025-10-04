@@ -23,7 +23,8 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>2. Download all programs necessary for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
-<br/>&emsp;&emsp;<img width="125" height="125" alt="GitHub-Mark-ea2971cee799" src="https://github.com/user-attachments/assets/d0af528c-8daa-4398-a626-c41fcdbfa2ae" />&emsp;&emsp;
+<br/>&emsp;&emsp;<img width="250" height="125" alt="github-logo-vector" src="https://github.com/user-attachments/assets/63ed02aa-395f-481f-8963-de8c7a0503c5" />
+&emsp;&emsp;
 <img width="250" height="125" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
 
 
