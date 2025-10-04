@@ -23,7 +23,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 &emsp;&emsp;<img width="125" height="125" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;
 <img width="125" height="125" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" /><br/>
 
-<br/>2. Download all programs necessarsy for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
+<br/>2. Download all programs necessary for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
 <br/>&emsp;&emsp;<img width="125" height="125" alt="GitHub-Mark-ea2971cee799" src="https://github.com/user-attachments/assets/d0af528c-8daa-4398-a626-c41fcdbfa2ae" />&emsp;
 <img width="125" height="125" alt="Git_icon svg" src="https://github.com/user-attachments/assets/4235f535-74df-4be5-8277-91907689de05" /><br/>
