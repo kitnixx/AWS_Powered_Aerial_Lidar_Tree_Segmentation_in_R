@@ -21,7 +21,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
 <img width="150" height="200" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />
-<img width="150" height="150" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" />
+<img width="125" height="125" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" />
 
 2. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
 
