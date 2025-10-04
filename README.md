@@ -38,7 +38,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>5. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
 
-&emsp;&emsp;<img width="110" height="110" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
+&emsp;&emsp;<img width="105" height="105" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
 <br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
@@ -47,11 +47,11 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>7. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
-&emsp;&emsp;<img width="200" height="100" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
+&emsp;&emsp;<img width="200" height="1110" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
    
 <br/>8. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
-&emsp;&emsp;<img width="200" height="100" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
+&emsp;&emsp;<img width="200" height="110" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
 
 <br/>9. Monitor progress with AWS Cloudwatch.<br/><br/>
 
