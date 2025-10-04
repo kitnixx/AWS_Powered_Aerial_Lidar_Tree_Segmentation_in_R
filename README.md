@@ -50,12 +50,12 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
    
 <br/>8. Monitor progress with AWS Cloudwatch.<br/><br/>
 
-&emsp;&emsp;
-   
+&emsp;&emsp;<img width="100" height="100" alt="aws-cloudwatch-8x" src="https://github.com/user-attachments/assets/9a93cf05-37ca-45ac-99b7-aac5f48d8563" />
+
 <br/>9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.<br/><br/>
 
-&emsp;&emsp;
-  
+&emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
+
 <br/>10. Rejoice!<br/><br/>
 
 ## Resources
