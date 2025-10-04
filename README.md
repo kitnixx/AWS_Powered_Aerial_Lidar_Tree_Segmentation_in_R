@@ -28,7 +28,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 <br/>3. Download all programs necessary for local development listed in the section, "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
 <br/>&emsp;&emsp;<img width="225" height="100" alt="github-logo-vector" src="https://github.com/user-attachments/assets/63ed02aa-395f-481f-8963-de8c7a0503c5" />&emsp;&emsp;
-<img width="175" height="65" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
+<img width="175" height="75" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
 
 <br/>4. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app. Refer to the section, "Information on Script Names."<br/><br/>
 
@@ -47,11 +47,11 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>7. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
-&emsp;&emsp;<img width="300" height="100" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
+&emsp;&emsp;<img width="200" height="75" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
    
 <br/>8. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
-&emsp;&emsp;<img width="300" height="100" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
+&emsp;&emsp;<img width="200" height="75" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
 
 <br/>9. Monitor progress with AWS Cloudwatch.<br/><br/>
 
