@@ -25,7 +25,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>&emsp;&emsp;<img width="225" height="105" alt="github-logo-vector" src="https://github.com/user-attachments/assets/63ed02aa-395f-481f-8963-de8c7a0503c5" />
 &emsp;&emsp;
-<img width="200" height="100" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
+<img width="250" height="125" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
 
 
 
