@@ -23,26 +23,38 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 &emsp;&emsp;<img width="125" height="125" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;
 <img width="125" height="125" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" />
 
-2. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
+2. Download all programs necessarsy for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.
 
+&emsp;&emsp;![GitHub-logo](https://github.com/user-attachments/assets/ec77b6cb-4575-492e-9cc7-9a25a1542f11)
+
+
+4. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
+
+&emsp;&emsp;
    
-3. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
+4. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
 
+&emsp;&emsp;
    
 5. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
+&emsp;&emsp;
    
 6. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
+&emsp;&emsp;
    
 7. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
+&emsp;&emsp;
    
 8. Monitor progress with AWS Cloudwatch.<br/><br/>
 
+&emsp;&emsp;
    
 9. Download tree segmentation outputs from the AWS S3 bucket to your local storage device.<br/><br/>
 
+&emsp;&emsp;
   
 10. Rejoice!<br/><br/>
 
