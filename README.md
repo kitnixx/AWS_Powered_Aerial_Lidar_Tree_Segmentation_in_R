@@ -26,7 +26,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 <br/>&emsp;&emsp;<img width="225" height="100" alt="github-logo-vector" src="https://github.com/user-attachments/assets/63ed02aa-395f-481f-8963-de8c7a0503c5" />&emsp;&emsp;
 <img width="250" height="100" alt="images" src="https://github.com/user-attachments/assets/26ede33f-ef7e-4e61-a9bd-dfe94b3218a4" />
 
-<br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
+<br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app. Refer to the section "Information on Script Names."<br/><br/>
 
 &emsp;&emsp;<img width="400" height="100" alt="visual_studio_b72bcf9a-8de0-4ce0-816b-a9aa030260c0-4577576" src="https://github.com/user-attachments/assets/9be453b6-3651-4917-9661-c3b9476b8e3f" />&emsp;&emsp;
 <img width="250" height="100" alt="Node js_logo svg" src="https://github.com/user-attachments/assets/605bf1e7-0566-4318-8595-bcb33aeee1fc" />&emsp;&emsp;
