@@ -43,7 +43,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 <br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
 &emsp;&emsp;<img width="125" height="110" alt="png-transparent-docker-hd-logo" src="https://github.com/user-attachments/assets/79ce8338-c410-4391-b07d-96eca88ddf26" />&emsp;&emsp;
-<img width="105" height="105" alt="image" src="https://github.com/user-attachments/assets/401f691b-e477-4767-88a1-b3bb14cd78a2" />
+<img width="1115" height="107" alt="image" src="https://github.com/user-attachments/assets/401f691b-e477-4767-88a1-b3bb14cd78a2" />
 
 <br/>7. Use Postman to locally customize tree segmentation parameters in the frontend R script.<br/><br/>
 
