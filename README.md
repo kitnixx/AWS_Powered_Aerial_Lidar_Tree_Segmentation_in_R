@@ -23,7 +23,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>2. Upload .las files from local or cloud storage to your AWS S3 bucket.<br/>
 
-&emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
+<br/>&emsp;&emsp;<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
 
 <br/>3. Download all programs necessary for local development listed in the section, "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
