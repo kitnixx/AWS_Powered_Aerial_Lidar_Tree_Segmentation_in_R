@@ -18,13 +18,14 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
-&emsp;&emsp;<img width="125" height="125" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;
+&emsp;&emsp;<img width="125" height="125" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;&emsp;
 <img width="125" height="125" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" /><br/>
 
 <br/>2. Download all programs necessary for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
-<br/>&emsp;&emsp;<img width="125" height="125" alt="GitHub-Mark-ea2971cee799" src="https://github.com/user-attachments/assets/d0af528c-8daa-4398-a626-c41fcdbfa2ae" />&emsp;
-<img width="125" height="125" alt="Git_icon svg" src="https://github.com/user-attachments/assets/4235f535-74df-4be5-8277-91907689de05" /><br/>
+<br/>&emsp;&emsp;<img width="125" height="125" alt="GitHub-Mark-ea2971cee799" src="https://github.com/user-attachments/assets/d0af528c-8daa-4398-a626-c41fcdbfa2ae" />&emsp;&emsp;
+<img width="125" height="125" alt="png-clipart-computer-icons-pro-git-github-logo-text-logo-thumbnail" src="https://github.com/user-attachments/assets/bda10603-bf84-49f1-b7d7-a8e61d7549a7" />
+<br/>
 
 <br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
 
