@@ -34,7 +34,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 <br/>4. Spin up your AWS EC2 instance of choice - the default is free tier.<br/><br/>
 
-&emsp;&emsp;<img width="200" height="100" alt="5197e15e-1972-4b8f-b19b-185241ab3de4" src="https://github.com/user-attachments/assets/0b6f622d-60dc-47ba-9c7f-9d58f44145a7" />
+&emsp;&emsp;<img width="100" height="100" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
 <br/>5. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service.<br/><br/>
 
