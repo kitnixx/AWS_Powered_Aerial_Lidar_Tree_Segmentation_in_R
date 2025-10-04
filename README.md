@@ -24,8 +24,8 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 <br/>2. Download all programs necessary for local development listed in the section "Setup for Local Part of the Workflow." Pull this GitHub repository to your local machine using Git.<br/>
 
 <br/>&emsp;&emsp;<img width="125" height="125" alt="GitHub-Mark-ea2971cee799" src="https://github.com/user-attachments/assets/d0af528c-8daa-4398-a626-c41fcdbfa2ae" />&emsp;&emsp;
-<img width="125" height="125" alt="png-clipart-computer-icons-pro-git-github-logo-text-logo-thumbnail" src="https://github.com/user-attachments/assets/bda10603-bf84-49f1-b7d7-a8e61d7549a7" />
-<br/>
+<img width="125" height="125" alt="png-clipart-computer-icons-pro-git-github-logo-text-logo-thumbnail-1" src="https://github.com/user-attachments/assets/fa4f0f75-7452-485f-8850-45182f060500" />
+
 
 <br/>3. Edit the backend node.js and R scripts (we recommend Visual Studio IDE) to customize a Docker container and Amazon Machine Image (AMI) for cloud deployment of the app.<br/><br/>
 
