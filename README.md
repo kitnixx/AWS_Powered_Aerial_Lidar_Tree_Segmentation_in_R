@@ -14,9 +14,7 @@ This is the experimental framework of a customizable DIY cloud application for a
 
 You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app. You will also need to download a number of software programs to your local machine, which are listed in the section below labeled "Setup for Local Part of the Workflow."<br/>
 
-#
-
-<br/>The workflow of the app is as follows:<br/>
+## Application Workflow
 
 <br/>1. Acquire or prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
