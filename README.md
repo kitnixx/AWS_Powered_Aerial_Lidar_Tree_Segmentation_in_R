@@ -16,7 +16,7 @@ You must preemptively establish an AWS account, SSH key pair and S3 bucket to de
 
 ## Application Workflow
 
-<br/>1. Establish an AWS account, SSH key pair and S3 bucket in order to deploy the app.<br/>
+<br/>1. Establish an AWS account, SSH key pair and AWS S3 bucket in order to deploy the app.<br/>
 
 <br/>2. Acquire and prepare aerial lidar point clouds in .las format by georeferencing, classifying. cleaning, clipping and merging files if necessary in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
