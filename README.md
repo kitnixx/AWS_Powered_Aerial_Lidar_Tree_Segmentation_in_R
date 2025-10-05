@@ -40,7 +40,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 &emsp;&emsp;<img width="105" height="105" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
-<br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service to launch the application. Refer to "Setup Docker on EC2 Instance" in the "More References" section.<br/><br/>
+<br/>6. Deploy the Docker container and AMI to AWS servers using AWS Elastic Beanstalk to launch the application. Refer to "Setup Docker on EC2 Instance" in the "More References" section.<br/><br/>
 
 &emsp;&emsp;<img width="200" height="200" alt="Docker-Logo-2013" src="https://github.com/user-attachments/assets/0f9c1b46-2423-40cf-9316-2638b04ce991" />&emsp;&emsp;
 <img width="115" height="107" alt="image" src="https://github.com/user-attachments/assets/401f691b-e477-4767-88a1-b3bb14cd78a2" />
