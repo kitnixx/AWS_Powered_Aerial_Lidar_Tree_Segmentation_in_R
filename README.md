@@ -49,12 +49,12 @@ You must preemptively establish an AWS account, SSH key pair and S3 bucket to de
 
 <br/>8. Use Postman to locally view the frontend R script and customize tree segmentation parameters.<br/><br/>
 
-&emsp;&emsp;<img width="200" height="120" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />&emsp;&emsp;
+&emsp;&emsp;<img width="200" height="130" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />&emsp;&emsp;
 <img width="115" height="110" alt="R_logo svg" src="https://github.com/user-attachments/assets/cc8c4ba4-d6aa-4156-8a8e-94a17b4b205a" />
    
 <br/>9. Queue the processing job locally in Postman and post it to the cloud - SEND IT!<br/><br/>
 
-&emsp;&emsp;<img width="200" height="120" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
+&emsp;&emsp;<img width="200" height="130" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
 
 <br/>10. Monitor progress with AWS Cloudwatch. Refer to "Cloudwatch Logging" in the "More References" section. <br/><br/>
 
