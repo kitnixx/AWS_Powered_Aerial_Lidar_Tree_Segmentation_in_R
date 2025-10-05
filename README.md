@@ -8,15 +8,15 @@
 
 #
 <br/>
-This is the experimental framework of a customizable DIY cloud application for aerial lidar-based individual tree segmentation in R. It serves as a skeleton or guide in creating your own cloud-based tree segmentation app. This original workflow was devloped in 2020 by Katie Nicolato and Alex Feng in cooperation with the Aerial Information Systems Lab at Oregon State University and the US Forest Service.<br/>
+This is the framework of a customizable DIY cloud application for aerial lidar tree segmentation in R. It serves as a guide in creating your own cloud-based tree segmentation app. The original workflow was developed in 2020 by Katie Nicolato and Alex Feng in cooperation with the Aerial Information Systems Lab at Oregon State University and the US Forest Service.<br/>
 
-<br/>The app is powered by Amazon Web Service (AWS) EC2 instances and segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model, digital terrain model and point cloud metrics. It is fully customizable from instance tier to tree segmentation algorithm and can be configured to run on multiple instances at once.<br/> 
+<br/>The app is powered by Amazon Web Services (AWS) EC2 instances. It segments input .las files stored in an AWS S3 bucket to output a tree point layer, tree crown layer, canopy height model, digital terrain model and point cloud metrics. It is fully customizable from instance type to tree segmentation algorithm and can be configured to run on multiple instances at once.<br/> 
 
 You must preemptively establish an AWS account, key pair and S3 bucket to deploy the app. You will also need to download a number of software programs to your local machine, which are listed in the section below labeled "Setup for Local Part of the Workflow."<br/><br/>
 
 ## Application Workflow
 
-<br/>1. Acquire and prepare aerial lidar point clouds in .las format by registering, classifying. cleaning, cliping and merging files if necessary in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
+<br/>1. Acquire and prepare aerial lidar point clouds in .las format by georeferencing, classifying. cleaning, clipping and merging files if necessary in external software to create areas of interest. R contains some tools to perform these actions should you choose to integrate them into your frontend script for the app instead. We recommend the open-source lidar programs CloudCompare for visualization and LAStools for manipulation. <br/><br/>
 
 &emsp;&emsp;<img width="110" height="110" alt="images" src="https://github.com/user-attachments/assets/15156e80-a7ad-4559-9056-bb97a2f59bda" />&emsp;&emsp;
 <img width="110" height="110" alt="rapidlasso_LAStools_logo" src="https://github.com/user-attachments/assets/d6b95096-bd6a-4203-aa1b-2711d32c3b29" /><br/>
@@ -40,7 +40,7 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 &emsp;&emsp;<img width="105" height="105" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
-<br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service to launch the application.<br/><br/>
+<br/>6. Deploy the Docker container and AMI to AWS servers using the AWS Elastic Beanstalk management service to launch the application. Refer to "Setup Docker on EC2 Instance" in the "More References" section.<br/><br/>
 
 &emsp;&emsp;<img width="200" height="200" alt="Docker-Logo-2013" src="https://github.com/user-attachments/assets/0f9c1b46-2423-40cf-9316-2638b04ce991" />&emsp;&emsp;
 <img width="115" height="107" alt="image" src="https://github.com/user-attachments/assets/401f691b-e477-4767-88a1-b3bb14cd78a2" />
@@ -53,11 +53,11 @@ You must preemptively establish an AWS account, key pair and S3 bucket to deploy
 
 &emsp;&emsp;<img width="200" height="120" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
 
-<br/>9. Monitor progress with AWS Cloudwatch.<br/><br/>
+<br/>9. Monitor progress with AWS Cloudwatch. Refer to "Cloudwatch Logging" in the "More References" section. <br/><br/>
 
 &emsp;&emsp;<img width="105" height="105" alt="aws-cloudwatch-8x" src="https://github.com/user-attachments/assets/9a93cf05-37ca-45ac-99b7-aac5f48d8563" />
 
-<br/>10. Download tree segmentation outputs from your AWS S3 bucket to your local storage device.<br/><br/>
+<br/>10. Download tree segmentation outputs from your AWS S3 bucket to local or cloud storage.<br/><br/>
 
 &emsp;&emsp;<img width="105" height="105" alt="image" src="https://github.com/user-attachments/assets/157cceaa-f7fc-4d21-90de-455db857b840" />
 
