@@ -47,7 +47,7 @@ You must preemptively establish an AWS account, SSH key pair and S3 bucket to de
 &emsp;&emsp;<img width="200" height="200" alt="Docker-Logo-2013" src="https://github.com/user-attachments/assets/0f9c1b46-2423-40cf-9316-2638b04ce991" />&emsp;&emsp;
 <img width="115" height="107" alt="image" src="https://github.com/user-attachments/assets/401f691b-e477-4767-88a1-b3bb14cd78a2" />
 
-<br/>8. Use Postman to view the frontend R script and locally customize tree segmentation parameters.<br/><br/>
+<br/>8. Use Postman to locally view the frontend R script and customize tree segmentation parameters.<br/><br/>
 
 &emsp;&emsp;<img width="200" height="120" alt="Postman_(software)" src="https://github.com/user-attachments/assets/ad645003-e960-44ac-963c-665ec0447261" />
    
