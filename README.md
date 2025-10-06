@@ -38,7 +38,7 @@ You must preemptively establish an AWS account, SSH key pair and S3 bucket to de
 <img width="200" height="75" alt="Node js_logo svg" src="https://github.com/user-attachments/assets/605bf1e7-0566-4318-8595-bcb33aeee1fc" />&emsp;&emsp;
 <img width="115" height="110" alt="R_logo svg" src="https://github.com/user-attachments/assets/cc8c4ba4-d6aa-4156-8a8e-94a17b4b205a" />
 
-<br/>6. Spin up your AWS EC2 instance of choice - the default is free tier. There are noticeable improvements in processing time when using more powerful and pricey instances if it is within your budget. <br/><br/>
+<br/>6. Spin up your AWS EC2 instance of choice - the default is free tier. There are noticeable improvements in processing time when using more powerful and pricey instances. <br/><br/>
 
 &emsp;&emsp;<img width="105" height="105" alt="Amazon-EC2@4x-e1593195270371" src="https://github.com/user-attachments/assets/a536ae6a-143f-487d-a0cd-5a8b333af8a4" />
 
