@@ -173,4 +173,4 @@ docker logs canyoncreeklidar
   - https://hackernoon.com/running-docker-on-aws-ec2-83a14b780c56
 - Cloudwatch Logging
   - https://cloudonaut.io/a-simple-way-to-manage-log-messages-from-containers-cloudwatch-logs/#:~:text=Simple%20Example,and%20attach%20the%20CloudWatchLogsFullAccess%20policy
-- We thank Louis Aslett for his work in developing a super-clean inspiration for our app at https://www.louisaslett.com/RStudio_AMI/
+- Louis Aslett's fun RStudio AMI with Dropbox integration was an inspiration for our app. Experience it at https://www.louisaslett.com/RStudio_AMI/
